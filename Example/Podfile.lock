@@ -1,0 +1,23 @@
+PODS:
+  - MBProgressHUD (1.1.0)
+  - XWHUDManager (0.1.0):
+    - MBProgressHUD (~> 1.1.0)
+
+DEPENDENCIES:
+  - XWHUDManager (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MBProgressHUD
+
+EXTERNAL SOURCES:
+  XWHUDManager:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  XWHUDManager: 64e6f2599e05a92f0746de097725e6dd533206bd
+
+PODFILE CHECKSUM: f65408d34b5ae3438008f403bf5383fbb5632523
+
+COCOAPODS: 1.5.3

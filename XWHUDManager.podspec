@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'XWHUDManager'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of XWHUDManager.'
+  s.summary          = 'MBProgressHUD 封装'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -26,17 +26,18 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'qxuewei' => 'qiuxuewei@peiwo.cn' }
   s.source           = { :git => 'https://github.com/qxuewei/XWHUDManager.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/qxuewei'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'XWHUDManager/Classes/**/*'
+  s.source_files = 'XWHUDManager/*'
   
   # s.resource_bundles = {
   #   'XWHUDManager' => ['XWHUDManager/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'UIKit'
+  s.dependency 'MBProgressHUD', '~> 1.1.0'
+
 end

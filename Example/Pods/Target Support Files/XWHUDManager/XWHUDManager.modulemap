@@ -1,0 +1,6 @@
+framework module XWHUDManager {
+  umbrella header "XWHUDManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
