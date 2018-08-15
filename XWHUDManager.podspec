@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XWHUDManager'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'MBProgressHUD 封装'
 
 # This description is used to generate tags and improve search results.
@@ -26,7 +26,7 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'qxuewei' => 'qiuxuewei@peiwo.cn' }
   s.source           = { :git => 'https://github.com/qxuewei/XWHUDManager.git', :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/qxuewei'
+  # s.social_media_url = 'https://twitter.com/qxuewei'
 
   s.ios.deployment_target = '8.0'
 

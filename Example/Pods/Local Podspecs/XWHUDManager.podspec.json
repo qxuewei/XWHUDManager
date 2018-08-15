@@ -19,7 +19,7 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "XWHUDManager/Classes/**/*",
+  "source_files": "XWHUDManager/*",
   "frameworks": "UIKit",
   "dependencies": {
     "MBProgressHUD": [
