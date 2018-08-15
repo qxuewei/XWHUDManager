@@ -24,6 +24,13 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		74BDF8C85D1EC811D0984CB5 /* Pods_XWHUDManager_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE461807662015EF042EACA8 /* Pods_XWHUDManager_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		B61742FE21244AFF0091BE92 /* wildcat_gif_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61742F721244AFE0091BE92 /* wildcat_gif_2@2x.png */; };
+		B61742FF21244AFF0091BE92 /* wildcat_gif_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61742F821244AFE0091BE92 /* wildcat_gif_6@2x.png */; };
+		B617430021244AFF0091BE92 /* wildcat_gif_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61742F921244AFE0091BE92 /* wildcat_gif_4@2x.png */; };
+		B617430121244AFF0091BE92 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = B61742FA21244AFE0091BE92 /* loading@2x.gif */; };
+		B617430221244AFF0091BE92 /* wildcat_gif_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61742FB21244AFE0091BE92 /* wildcat_gif_1@2x.png */; };
+		B617430321244AFF0091BE92 /* wildcat_gif_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61742FC21244AFE0091BE92 /* wildcat_gif_3@2x.png */; };
+		B617430421244AFF0091BE92 /* wildcat_gif_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61742FD21244AFE0091BE92 /* wildcat_gif_5@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +72,13 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AF97C09D08F34B4097D6D63 /* Pods-XWHUDManager_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWHUDManager_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example.release.xcconfig"; sourceTree = "<group>"; };
 		AE461807662015EF042EACA8 /* Pods_XWHUDManager_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XWHUDManager_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B61742F721244AFE0091BE92 /* wildcat_gif_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_2@2x.png"; sourceTree = "<group>"; };
+		B61742F821244AFE0091BE92 /* wildcat_gif_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_6@2x.png"; sourceTree = "<group>"; };
+		B61742F921244AFE0091BE92 /* wildcat_gif_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_4@2x.png"; sourceTree = "<group>"; };
+		B61742FA21244AFE0091BE92 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
+		B61742FB21244AFE0091BE92 /* wildcat_gif_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_1@2x.png"; sourceTree = "<group>"; };
+		B61742FC21244AFE0091BE92 /* wildcat_gif_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_3@2x.png"; sourceTree = "<group>"; };
+		B61742FD21244AFE0091BE92 /* wildcat_gif_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_5@2x.png"; sourceTree = "<group>"; };
 		CDA8389F7C24A702D55C331C /* Pods_XWHUDManager_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XWHUDManager_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BAE02F2CF6FBF5CC0F1859 /* Pods-XWHUDManager_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWHUDManager_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XWHUDManager_Tests/Pods-XWHUDManager_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +153,7 @@
 				6003F5A6195388D20070C39A /* XWViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
+				B61742F621244AFE0091BE92 /* images */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for XWHUDManager";
@@ -194,6 +209,20 @@
 				E1BAE02F2CF6FBF5CC0F1859 /* Pods-XWHUDManager_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B61742F621244AFE0091BE92 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				B61742FA21244AFE0091BE92 /* loading@2x.gif */,
+				B61742FB21244AFE0091BE92 /* wildcat_gif_1@2x.png */,
+				B61742F721244AFE0091BE92 /* wildcat_gif_2@2x.png */,
+				B61742FC21244AFE0091BE92 /* wildcat_gif_3@2x.png */,
+				B61742F921244AFE0091BE92 /* wildcat_gif_4@2x.png */,
+				B61742FD21244AFE0091BE92 /* wildcat_gif_5@2x.png */,
+				B61742F821244AFE0091BE92 /* wildcat_gif_6@2x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,8 +306,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				B617430221244AFF0091BE92 /* wildcat_gif_1@2x.png in Resources */,
+				B61742FE21244AFF0091BE92 /* wildcat_gif_2@2x.png in Resources */,
+				B617430121244AFF0091BE92 /* loading@2x.gif in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				B61742FF21244AFF0091BE92 /* wildcat_gif_6@2x.png in Resources */,
+				B617430421244AFF0091BE92 /* wildcat_gif_5@2x.png in Resources */,
+				B617430321244AFF0091BE92 /* wildcat_gif_3@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				B617430021244AFF0091BE92 /* wildcat_gif_4@2x.png in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
