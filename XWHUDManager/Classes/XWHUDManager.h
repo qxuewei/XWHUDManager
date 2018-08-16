@@ -1,14 +1,15 @@
 //
-//  MBProgressHUD+XW.h
-//  XWHUDManager
+//  XWHUDManager.h
+//  MBProgressHUD
 //
-//  Created by 邱学伟 on 2017/3/8.
-//  Copyright © 2017年 邱学伟. All rights reserved.
+//  Created by 邱学伟 on 2018/8/17.
 //
 
-#import "MBProgressHUD.h"
+#import <Foundation/Foundation.h>
 
-@interface MBProgressHUD (XW)
+NS_ASSUME_NONNULL_BEGIN
+
+@interface XWHUDManager : NSObject
 
 #pragma mark - 隐藏HUD
 /**
@@ -28,7 +29,7 @@
 
 /**
  延时隐藏蒙版((KeyWindow和当前控制器视图))
-
+ 
  @param delaySeconds 延时消失时间
  */
 + (void)hideDelay:(NSTimeInterval)delaySeconds;
@@ -42,7 +43,7 @@
 
 /**
  在KeyWindow展示一个小菊花 (延时 afterSecond 秒 结束)
-
+ 
  @param afterSecond 延时消失时间
  */
 + (void)showHUDAfterDelay:(NSTimeInterval)afterSecond;
@@ -64,29 +65,29 @@
 
 /**
  在KeyWindow展示一个有文本小菊花 - 不自动消失
-
+ 
  @param message 提示语
  */
 + (void)showHUDMessage:(NSString *)message;
 
 /**
  限时隐藏在KeyWindow展示一个 loading... 小菊花
-
+ 
  @param afterSecond 延时消失时间
  */
 + (void)showHUDLoadingAfterDelay:(NSTimeInterval)afterSecond;
 
 /**
  限时隐藏在KeyWindow展示一个有文本小菊花
-
+ 
  @param message 提示语
  @param afterSecond 延时消失时间
  */
 + (void)showHUDMessage:(NSString *)message afterDelay:(NSTimeInterval)afterSecond;
 
 /**
-  限时隐藏在view展示一个有文本小菊花
-
+ 限时隐藏在view展示一个有文本小菊花
+ 
  @param message 提示语
  @param afterSecond 延时消失时间
  */
@@ -95,21 +96,21 @@
 #pragma mark - 文本提示框
 /**
  在KeyWindow上显示文本提示框 - 1秒后消失
-
+ 
  @param message 提示语
  */
 + (void)showTipHUD:(NSString *)message;
 
 /**
  在当前视图上显示文本提示框 - 1秒后消失
-
+ 
  @param message 提示语
  */
 + (void)showTipHUDInView:(NSString *)message;
 
 /**
  限时隐藏在KeyWindow展示一个有文本提示框
-
+ 
  @param message 提示语
  @param afterSecond 延时消失时间
  */
@@ -117,7 +118,7 @@
 
 /**
  限时隐藏在view展示一个有文本提示框
-
+ 
  @param message 提示语
  @param afterSecond 延时消失时间
  */
@@ -131,7 +132,7 @@
 
 /**
  在 KeyWindow 展示 有文本的成功提示,默认成功图片在 XWHUDImages.bundle 中, - 1秒消失
-
+ 
  @param message 提示语
  */
 + (void)showSuccessTipHUD:(NSString *)message;
@@ -155,14 +156,14 @@
 
 /**
  在view有文本失败提示 - 1秒消失
-
+ 
  @param message 提示语
  */
 + (void)showErrorTipHUDInView:(NSString *)message;
 
 /**
  在 KeyWindow 展示 信息提示,默认信息图片在 XWHUDImages.bundle 中, - 1秒消失
-
+ 
  @param message 提示语
  */
 + (void)showInfoTipHUD:(NSString *)message;
@@ -191,7 +192,7 @@
 #pragma mark - 自定义图片+提示语(图片需要导入 'XWHUDImages.bundle' 包中)
 /**
  在 KeyWindow 展示自定义图片 - 图片需要导入 'XWHUDImages.bundle' 包中
-
+ 
  @param iconName 图片名
  @param message 提示语
  @param aTimer 延时消失时间
@@ -226,7 +227,7 @@
 #pragma mark - 自定义图片+提示语(图片外界传入)
 /**
  在 KeyWindow 展示自定义图片 - 图片外界传入
-
+ 
  @param image 图片
  @param message 提示语
  @param aTimer 延时消失时间
@@ -261,7 +262,7 @@
 #pragma mark - 提示序列帧图片
 /**
  在 KeyWindow 展示自定义序列帧图片 - 图片数组外界传入
-
+ 
  @param images 序列帧
  @param message 提示语
  @param aTimer 延时消失时间
@@ -296,7 +297,7 @@
 #pragma mark - 提示GIF图片 (传入Gif 文件名)
 /**
  在 KeyWindow 展示自定义GIF图片 - 传入Gif 文件名
-
+ 
  @param gifFileName Gif 文件名
  @param message 提示语
  @param aTimer 延时消失时间
@@ -340,7 +341,7 @@
 
 /**
  在view上展示自定义GIF图片 - 延时消失
-
+ 
  @param gifImage Gif 图 建议使用 imageGIFWithData
  @param message 提示语
  @param aTimer 延时消失时间
@@ -357,7 +358,7 @@
 
 /**
  在view上展示自定义GIF图片 - 不自动移除
-
+ 
  @param gifImage Gif 图 建议使用 imageGIFWithData
  @param message 提示语
  */
@@ -365,7 +366,7 @@
 
 /**
  在KeyWindow上展示自定义GIF图片 - 不自动移除
-
+ 
  @param gifImage Gif 图 建议使用 imageGIFWithData
  @param message 提示语
  @param backgroundColor 背景色
@@ -377,7 +378,7 @@
 
 /**
  在view上展示自定义GIF图片 - 不自动移除
-
+ 
  @param gifImage Gif 图 建议使用 imageGIFWithData
  @param message 提示语
  @param backgroundColor 背景色
@@ -392,10 +393,12 @@
 
 /**
  Gif
-
+ 
  @param data Gif 二进制
  eg : [MBProgressHUD imageGIFWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:gifFileName ofType:@"gif"]]];
  @return Gif 图
  */
 + (UIImage *)imageGIFWithData:(NSData *)data;
 @end
+
+NS_ASSUME_NONNULL_END

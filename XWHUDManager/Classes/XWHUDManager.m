@@ -1,20 +1,20 @@
 //
-//  MBProgressHUD+XW.m
-//  XWHUDManager
+//  XWHUDManager.m
+//  MBProgressHUD
 //
-//  Created by 邱学伟 on 2017/3/8.
-//  Copyright © 2017年 邱学伟. All rights reserved.
+//  Created by 邱学伟 on 2018/8/17.
 //
 
-#import "MBProgressHUD+XW.h"
+#import "XWHUDManager.h"
+#import "MBProgressHUD.h"
 
-
+#pragma mark - Timer 
 @interface NSTimer (XWHUD)
 /// 弱引用Timer
 + (NSTimer *)xwhud_timerTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block repeats:(BOOL)repeats;
 @end
 
-@implementation MBProgressHUD (XW)
+@implementation XWHUDManager
 /// 隐藏蒙版默认时间
 static const NSTimeInterval kHideHUDTimeInterval = 1.0f;
 /// 提示框文字大小
@@ -35,7 +35,7 @@ static NSTimer * kHideHUDTimer;
     [kHideHUDTimer invalidate];
     
     kHideHUDTimer = [NSTimer xwhud_timerTimeInterval:delaySeconds block:^{
-        [MBProgressHUD hide];
+        [XWHUDManager hide];
     } repeats:NO];
 }
 
@@ -248,7 +248,7 @@ static NSTimer * kHideHUDTimer;
 #pragma mark - 提示序列帧图片
 /// 展示自定义序列帧图片
 + (void)showCustomImagesHUD:(NSArray <UIImage *> *)images message:(NSString *)message timer:(NSTimeInterval)aTimer {
- 
+    
     [self p_showCustomImages:images message:message isWindow:YES timer:aTimer > 0 ? aTimer : images.count * 0.1];
 }
 /// 在view上展示自定义序列帧图片
@@ -292,7 +292,7 @@ static NSTimer * kHideHUDTimer;
 #pragma mark - 提示GIF图片 (传入Gif 图片)
 /// 展示自定义GIF图片
 + (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message timer:(NSTimeInterval)aTimer {
- 
+    
     [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 在view上展示自定义GIF图片
@@ -377,19 +377,17 @@ static NSTimer * kHideHUDTimer;
     MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeCustomView;
     
-//    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDImages_%@@2x.png", iconName];
-//    NSBundle *curBundle = [NSBundle bundleForClass:self.class];
-//    //  *********** 重点 ***********   //
-//    NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
-//    NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
-//    NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
-//    //  ***************************   //
-//    UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
-
-    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDImages_%@@2x.png", iconName];
-    NSBundle *curBundle = [NSBundle bundleForClass:self.class]; // 获取当前bundle
-    NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:@"XWHUDManager.bundle"];
+    NSString *normalImgName = [NSString stringWithFormat:@"%@@2x.png", iconName];
+    NSBundle *curBundle = [NSBundle bundleForClass:self.class];
+    NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
+    NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
+    NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
     UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
+    
+    //    NSString *normalImgName = [NSString stringWithFormat:@"%@@2x.png", iconName];
+    //    NSBundle *curBundle = [NSBundle bundleForClass:NSClassFromString(@"XWHUDManager")]; // 获取当前bundle
+    //    NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:@"XWHUDManager.bundle"];
+    //    UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
     
     hud.customView = [[UIImageView alloc] initWithImage:normalImage];
     [hud hideAnimated:YES afterDelay:aTimer];
@@ -562,3 +560,4 @@ static NSTimer * kHideHUDTimer;
     }
 }
 @end
+
