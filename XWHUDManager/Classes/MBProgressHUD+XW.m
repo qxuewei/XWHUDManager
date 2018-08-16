@@ -376,7 +376,22 @@ static NSTimer * kHideHUDTimer;
 + (void)p_showCustomIcon:(NSString *)iconName message:(NSString *)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
     MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeCustomView;
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[@"XWHUDImages.bundle" stringByAppendingPathComponent:iconName]]];
+    
+//    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDImages_%@@2x.png", iconName];
+//    NSBundle *curBundle = [NSBundle bundleForClass:self.class];
+//    //  *********** 重点 ***********   //
+//    NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
+//    NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
+//    NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
+//    //  ***************************   //
+//    UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
+
+    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDImages_%@@2x.png", iconName];
+    NSBundle *curBundle = [NSBundle bundleForClass:self.class]; // 获取当前bundle
+    NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:@"XWHUDManager.bundle"];
+    UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
+    
+    hud.customView = [[UIImageView alloc] initWithImage:normalImage];
     [hud hideAnimated:YES afterDelay:aTimer];
 }
 

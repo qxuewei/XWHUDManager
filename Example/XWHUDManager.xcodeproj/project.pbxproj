@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1FD0ED5AEDB4D4D5B33EE010 /* Pods_XWHUDManager_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1ADA3084198A72B3BB90A86 /* Pods_XWHUDManager_Tests.framework */; };
+		2E9961FE2126298300AB9F73 /* wildcat_gif_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961F72126298300AB9F73 /* wildcat_gif_2@2x.png */; };
+		2E9961FF2126298300AB9F73 /* wildcat_gif_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961F82126298300AB9F73 /* wildcat_gif_6@2x.png */; };
+		2E9962002126298300AB9F73 /* wildcat_gif_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961F92126298300AB9F73 /* wildcat_gif_4@2x.png */; };
+		2E9962012126298300AB9F73 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961FA2126298300AB9F73 /* loading@2x.gif */; };
+		2E9962022126298300AB9F73 /* wildcat_gif_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961FB2126298300AB9F73 /* wildcat_gif_1@2x.png */; };
+		2E9962032126298300AB9F73 /* wildcat_gif_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961FC2126298300AB9F73 /* wildcat_gif_3@2x.png */; };
+		2E9962042126298300AB9F73 /* wildcat_gif_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961FD2126298300AB9F73 /* wildcat_gif_5@2x.png */; };
 		3A3A8FC7192C9F2E7C743538 /* Pods_XWHUDManager_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6381680A8A0E918F7D65B68E /* Pods_XWHUDManager_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -37,10 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B7F2FE24169D5E6887A80BC /* XWHUDManager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = XWHUDManager.podspec; path = ../XWHUDManager.podspec; sourceTree = "<group>"; };
+		0B7F2FE24169D5E6887A80BC /* XWHUDManager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XWHUDManager.podspec; path = ../XWHUDManager.podspec; sourceTree = "<group>"; };
 		0C8CBCCD15ECD0E126EBAF35 /* Pods-XWHUDManager_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWHUDManager_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example.release.xcconfig"; sourceTree = "<group>"; };
-		2E895EDFE3A02D7C55571D82 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		4F9101F6A02B51B8A67A0427 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		2E895EDFE3A02D7C55571D82 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		2E9961F72126298300AB9F73 /* wildcat_gif_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_2@2x.png"; sourceTree = "<group>"; };
+		2E9961F82126298300AB9F73 /* wildcat_gif_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_6@2x.png"; sourceTree = "<group>"; };
+		2E9961F92126298300AB9F73 /* wildcat_gif_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_4@2x.png"; sourceTree = "<group>"; };
+		2E9961FA2126298300AB9F73 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
+		2E9961FB2126298300AB9F73 /* wildcat_gif_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_1@2x.png"; sourceTree = "<group>"; };
+		2E9961FC2126298300AB9F73 /* wildcat_gif_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_3@2x.png"; sourceTree = "<group>"; };
+		2E9961FD2126298300AB9F73 /* wildcat_gif_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_5@2x.png"; sourceTree = "<group>"; };
+		4F9101F6A02B51B8A67A0427 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* XWHUDManager_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XWHUDManager_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,6 +120,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2E9961F62126298300AB9F73 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				2E9961F72126298300AB9F73 /* wildcat_gif_2@2x.png */,
+				2E9961F82126298300AB9F73 /* wildcat_gif_6@2x.png */,
+				2E9961F92126298300AB9F73 /* wildcat_gif_4@2x.png */,
+				2E9961FA2126298300AB9F73 /* loading@2x.gif */,
+				2E9961FB2126298300AB9F73 /* wildcat_gif_1@2x.png */,
+				2E9961FC2126298300AB9F73 /* wildcat_gif_3@2x.png */,
+				2E9961FD2126298300AB9F73 /* wildcat_gif_5@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +178,7 @@
 				6003F5A6195388D20070C39A /* XWViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
+				2E9961F62126298300AB9F73 /* images */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for XWHUDManager";
@@ -247,6 +276,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = qxuewei;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = FVN7S34L6G;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -277,8 +309,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				2E9962022126298300AB9F73 /* wildcat_gif_1@2x.png in Resources */,
+				2E9961FE2126298300AB9F73 /* wildcat_gif_2@2x.png in Resources */,
+				2E9962012126298300AB9F73 /* loading@2x.gif in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				2E9961FF2126298300AB9F73 /* wildcat_gif_6@2x.png in Resources */,
+				2E9962042126298300AB9F73 /* wildcat_gif_5@2x.png in Resources */,
+				2E9962032126298300AB9F73 /* wildcat_gif_3@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				2E9962002126298300AB9F73 /* wildcat_gif_4@2x.png in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,10 +376,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/XWHUDManager/XWHUDManager.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XWHUDManager.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +526,7 @@
 			baseConfigurationReference = FBDD3F87AE9485EBA68C0066 /* Pods-XWHUDManager_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FVN7S34L6G;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XWHUDManager/XWHUDManager-Prefix.pch";
 				INFOPLIST_FILE = "XWHUDManager/XWHUDManager-Info.plist";
@@ -500,6 +542,7 @@
 			baseConfigurationReference = 0C8CBCCD15ECD0E126EBAF35 /* Pods-XWHUDManager_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FVN7S34L6G;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XWHUDManager/XWHUDManager-Prefix.pch";
 				INFOPLIST_FILE = "XWHUDManager/XWHUDManager-Info.plist";
