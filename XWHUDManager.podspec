@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XWHUDManager'
-  s.version          = '0.2.0.0'
+  s.version          = '0.2.0.1'
   s.summary          = 'MBProgressHUD 封装.'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
- MBProgressHUD 封装
+  MBProgressHUD 封装
                        DESC
 
   s.homepage         = 'https://github.com/qxuewei/XWHUDManager'

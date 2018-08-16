@@ -24,10 +24,8 @@ static NSTimer * kHideHUDTimer;
 #pragma mark - 隐藏HUD
 /// 隐藏蒙版(无论在view还是window)
 + (void)hide{
-    
-    UIView  *winView =(UIView*)[UIApplication sharedApplication].delegate.window;
-    [self hideHUDForView:[self p_getCurrentUIVC].view animated:YES];
-    [self hideHUDForView:winView animated:YES];
+    [self hideInView];
+    [self hideInWindow];
 }
 
 /// 延时隐藏蒙版(无论在view还是window)
@@ -41,15 +39,16 @@ static NSTimer * kHideHUDTimer;
 
 /// 隐藏当前View上的HUD
 + (void)hideInView{
-    
-    [self hideHUDForView:[self p_getCurrentUIVC].view animated:YES];
+    [self p_hideHUDForView:[self p_getCurrentUIVC].view];
 }
 
 /// 隐藏当前window上的HUD
 + (void)hideInWindow{
-    
-    UIView  *winView =(UIView*)[UIApplication sharedApplication].delegate.window;
-    [self hideHUDForView:winView animated:YES];
+    [self p_hideHUDForView:[self p_getKeyWindow]];
+}
+
++ (void)p_hideHUDForView:(UIView *)view {
+    [MBProgressHUD hideHUDForView:view animated:YES];
 }
 
 #pragma mark - 小菊花
@@ -461,7 +460,7 @@ static NSTimer * kHideHUDTimer;
 /// 全局统一生成提示框对象
 + (MBProgressHUD *)p_createMBProgressHUDviewWithMessage:(NSString*)message isWindiw:(BOOL)isWindow {
     
-    UIView *view = isWindow? (UIView*)[UIApplication sharedApplication].delegate.window:[self p_getCurrentUIVC].view;
+    UIView *view = isWindow ? [self p_getKeyWindow] : [self p_getCurrentUIVC].view;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.removeFromSuperViewOnHide = YES;
     hud.label.text = message ? message : @"加载中...";
@@ -474,6 +473,11 @@ static NSTimer * kHideHUDTimer;
     hud.label.textColor = [UIColor whiteColor];
     hud.contentColor = [UIColor whiteColor];
     return hud;
+}
+
+/// 获取当前 keyWindow
++ (UIView *)p_getKeyWindow {
+    return (UIView*)[UIApplication sharedApplication].keyWindow;
 }
 
 /// 获取当前屏幕显示的viewcontroller

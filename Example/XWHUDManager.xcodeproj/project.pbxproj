@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1FD0ED5AEDB4D4D5B33EE010 /* Pods_XWHUDManager_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1ADA3084198A72B3BB90A86 /* Pods_XWHUDManager_Tests.framework */; };
+		2E09392E2126408F00BF8249 /* XWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E09392D2126408E00BF8249 /* XWViewController.m */; };
 		2E9961FE2126298300AB9F73 /* wildcat_gif_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961F72126298300AB9F73 /* wildcat_gif_2@2x.png */; };
 		2E9961FF2126298300AB9F73 /* wildcat_gif_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961F82126298300AB9F73 /* wildcat_gif_6@2x.png */; };
 		2E9962002126298300AB9F73 /* wildcat_gif_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9961F92126298300AB9F73 /* wildcat_gif_4@2x.png */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		0B7F2FE24169D5E6887A80BC /* XWHUDManager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XWHUDManager.podspec; path = ../XWHUDManager.podspec; sourceTree = "<group>"; };
 		0C8CBCCD15ECD0E126EBAF35 /* Pods-XWHUDManager_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWHUDManager_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example.release.xcconfig"; sourceTree = "<group>"; };
+		2E09392D2126408E00BF8249 /* XWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWViewController.m; sourceTree = "<group>"; };
 		2E895EDFE3A02D7C55571D82 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2E9961F72126298300AB9F73 /* wildcat_gif_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_2@2x.png"; sourceTree = "<group>"; };
 		2E9961F82126298300AB9F73 /* wildcat_gif_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wildcat_gif_6@2x.png"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				6003F59D195388D20070C39A /* XWAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* XWViewController.h */,
+				2E09392D2126408E00BF8249 /* XWViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				2E9961F62126298300AB9F73 /* images */,
@@ -394,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* XWAppDelegate.m in Sources */,
+				2E09392E2126408F00BF8249 /* XWViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

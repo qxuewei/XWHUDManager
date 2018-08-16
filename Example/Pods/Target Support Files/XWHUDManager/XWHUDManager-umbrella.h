@@ -10,7 +10,7 @@
 #endif
 #endif
 
-#import "MBProgressHUD+XW.h"
+#import "XWHUDManager.h"
 
 FOUNDATION_EXPORT double XWHUDManagerVersionNumber;
 FOUNDATION_EXPORT const unsigned char XWHUDManagerVersionString[];
