@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XWHUDManager'
-  s.version          = '0.1.2'
+  s.version          = '0.1.1'
   s.summary          = 'MBProgressHUD 封装'
 
 # This description is used to generate tags and improve search results.
@@ -31,13 +31,12 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'XWHUDManager/MBProgressHUD+XW.{h,m}'
-  
-  s.resource_bundles = {
-     'XWHUDManager' => ['XWHUDManager/XWHUDImages.bundle']
-  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit'
+  s.resource = 'XWHUDManager/XWHUDImages.bundle'
+#  s.resource_bundles = {
+#      'XWHUDManager' => ['XWHUDManager/XWHUDImages/*.png']
+#  }
+#  s.public_header_files = 'Pod/Classes/**/*.h'
+#  s.frameworks = 'UIKit'
   s.dependency 'MBProgressHUD', '~> 1.1.0'
 
 end

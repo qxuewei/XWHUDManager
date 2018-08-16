@@ -24,7 +24,7 @@
 /**
  隐藏当前KeyWindow上的蒙版
  */
-+ (void)hideInKeyWindow;
++ (void)hideInWindow;
 
 /**
  延时隐藏蒙版((KeyWindow和当前控制器视图))
