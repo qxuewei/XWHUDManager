@@ -493,7 +493,7 @@ static NSTimer * kHideHUDTimer;
 
 /// 获取当前 keyWindow
 + (UIView *)p_getKeyWindow {
-    return (UIView*)[UIApplication sharedApplication].keyWindow;
+    return (UIView*)[UIApplication sharedApplication].delegate.window;
 }
 
 /// 获取当前屏幕显示的viewcontroller
