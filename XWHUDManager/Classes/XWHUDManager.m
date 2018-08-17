@@ -18,7 +18,7 @@
 /// 隐藏蒙版默认时间
 static const NSTimeInterval kHideHUDTimeInterval = 1.0f;
 /// 提示框文字大小
-static CGFloat kFONT_SIZE = 14.0f;
+static CGFloat kFONT_SIZE = 13.0f;
 static NSTimer * kHideHUDTimer;
 
 #pragma mark - 隐藏HUD
@@ -129,8 +129,8 @@ static NSTimer * kHideHUDTimer;
 }
 
 ///在 KeyWindow 上展示提示语 - 1秒后移除
-+ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont {
-    
++ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin {
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[self p_getKeyWindow] animated:NO];
     hud.mode = MBProgressHUDModeText;
     hud.removeFromSuperViewOnHide = YES;
@@ -138,12 +138,16 @@ static NSTimer * kHideHUDTimer;
     hud.backgroundView.color = [UIColor clearColor];
     hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    // 注释下面配置代码默认显示浅灰->
+    if (margin > 0.0 && margin < 20.0) {
+        hud.margin = margin;
+    }
     hud.bezelView.color = backgroundColor ?: [UIColor blackColor];
     hud.label.textColor = textColor ?: [UIColor whiteColor];
     hud.label.font = textFont?: [UIFont systemFontOfSize:kFONT_SIZE];
     [hud hideAnimated:YES afterDelay:kHideHUDTimeInterval];
 }
+
+
 
 #pragma mark - 提示图片
 /// 正确提示
@@ -394,11 +398,6 @@ static NSTimer * kHideHUDTimer;
     NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
     NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
     UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
-    
-    //    NSString *normalImgName = [NSString stringWithFormat:@"%@@2x.png", iconName];
-    //    NSBundle *curBundle = [NSBundle bundleForClass:NSClassFromString(@"XWHUDManager")]; // 获取当前bundle
-    //    NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:@"XWHUDManager.bundle"];
-    //    UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
     
     hud.customView = [[UIImageView alloc] initWithImage:normalImage];
     [hud hideAnimated:YES afterDelay:aTimer];

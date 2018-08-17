@@ -102,13 +102,14 @@
         }
         case 14:
         {
-            [XWHUDManager showGifImagesHUD:@"loading@2x" message:@"GIF加载中..."];
+            UIImage *giftImage = [XWHUDManager imageGIFWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"loading@2x" ofType:@"gif"]]];
+           [XWHUDManager showGifImageHUDInView:giftImage message:@"正在拼命加载..." backgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]  textColor:[UIColor colorWithRed:180/255.0 green:180/255.0 blue:180/255.0 alpha:1] textFont:[UIFont systemFontOfSize:12.0] alpha:0.9];
             break;
         }
             case 15:
         {
             
-            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框" backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0]];
+            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框" backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0] margin:10.0];
             break;
         }
         default:

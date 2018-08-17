@@ -131,8 +131,9 @@ NS_ASSUME_NONNULL_BEGIN
  @param backgroundColor 背景色
  @param textColor 文本色
  @param textFont 字体
+ @param margin 边框间距
  */
-+ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont;
++ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin;
 
 #pragma mark - 提示图片
 /**
