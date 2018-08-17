@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    data = @[@"无限展示小菊花",@"在当前View展示一个小菊花",@"loading... 小菊花",@"显示隐藏自定义文本菊花",@"window上显示文本提示框",@"限时隐藏在view展示一个有文本提示框",@"正确提示正确提示正确提示正确提示正确提示正确提示正确提示",@"有文本正确提示有文本正确提示有文本正确提示有文本正确提示",@"错误提示",@"有文本错误提示",@"信息提示",@"警告提示",@"自定义图片",@"序列帧",@"GIF"];
+    data = @[@"无限展示小菊花",@"在当前View展示一个小菊花",@"loading... 小菊花",@"显示隐藏自定义文本菊花",@"window上显示文本提示框",@"限时隐藏在view展示一个有文本提示框",@"正确提示",@"有文本正确提示",@"错误提示",@"有文本错误提示",@"信息提示",@"警告提示",@"自定义图片",@"序列帧",@"GIF",@"自定义提示语"];
 }
 
 #pragma mark - UITableViewDataSource
@@ -37,6 +37,8 @@
     if(cell==nil){
         
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
     }
     cell.textLabel.text = data[indexPath.row];
     return cell;
@@ -101,6 +103,12 @@
         case 14:
         {
             [XWHUDManager showGifImagesHUD:@"loading@2x" message:@"GIF加载中..."];
+            break;
+        }
+            case 15:
+        {
+            
+            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框" backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0]];
             break;
         }
         default:

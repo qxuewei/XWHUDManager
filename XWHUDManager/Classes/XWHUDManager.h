@@ -124,6 +124,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)showTipHUDInView:(NSString *)message afterDelay:(NSTimeInterval)afterSecond;
 
+/**
+ 在 KeyWindow 上展示提示语 - 1秒后移除
+ 
+ @param message 提示语
+ @param backgroundColor 背景色
+ @param textColor 文本色
+ @param textFont 字体
+ */
++ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont;
+
 #pragma mark - 提示图片
 /**
  在 KeyWindow 展示 成功提示,默认成功图片在 XWHUDImages.bundle 中, - 1秒消失
