@@ -1,8 +1,8 @@
 {
   "name": "XWHUDManager",
-  "version": "0.2.0.4",
+  "version": "0.2.3",
   "summary": "MBProgressHUD 封装.",
-  "description": "MBProgressHUD 封装",
+  "description": "MBProgressHUD 封装, 支持自定义, 相当好用",
   "homepage": "https://github.com/qxuewei/XWHUDManager",
   "license": {
     "type": "MIT",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/qxuewei/XWHUDManager.git",
-    "tag": "0.2.0.4"
+    "tag": "0.2.3"
   },
   "social_media_url": "http://www.qiuxuewei.com",
   "platforms": {
