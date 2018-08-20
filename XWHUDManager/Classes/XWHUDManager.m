@@ -315,14 +315,14 @@ static NSTimer * kHideHUDTimer;
     [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 展示自定义GIF图片 - 不自动移除
-+ (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha {
++ (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha timer:(NSTimeInterval)aTimer {
     
-    [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:HUGE_VALF backgroundColor:backgroundColor textColor:textColor textFont:textFont alpha:alpha];
+    [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:(aTimer > 0 ? aTimer : HUGE_VALF) backgroundColor:backgroundColor textColor:textColor textFont:textFont alpha:alpha];
 }
 /// 在view上展示自定义GIF图片 - 不自动移除
-+ (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha {
++ (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha timer:(NSTimeInterval)aTimer {
     
-    [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:HUGE_VALF backgroundColor:backgroundColor textColor:textColor textFont:textFont alpha:alpha];
+    [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:(aTimer > 0 ? aTimer : HUGE_VALF) backgroundColor:backgroundColor textColor:textColor textFont:textFont alpha:alpha];
 }
 
 

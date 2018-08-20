@@ -387,7 +387,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param textFont 字体
  @param alpha 透明度
  */
-+ (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha;
++ (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha timer:(NSTimeInterval)aTimer;
 
 /**
  在view上展示自定义GIF图片 - 不自动移除
@@ -399,7 +399,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param textFont 字体
  @param alpha 透明度
  */
-+ (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha;
++ (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha timer:(NSTimeInterval)aTimer;
 
 
 #pragma mark - Data -> Gif

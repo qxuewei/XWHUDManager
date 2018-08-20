@@ -110,7 +110,7 @@
         case 14:
         {
             UIImage *giftImage = [XWHUDManager imageGIFWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"loading@2x" ofType:@"gif"]]];
-           [XWHUDManager showGifImageHUDInView:giftImage message:@"正在拼命加载..." backgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]  textColor:[UIColor colorWithRed:180/255.0 green:180/255.0 blue:180/255.0 alpha:1] textFont:[UIFont systemFontOfSize:12.0] alpha:0.9];
+           [XWHUDManager showGifImageHUDInView:giftImage message:@"正在拼命加载..." backgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]  textColor:[UIColor colorWithRed:180/255.0 green:180/255.0 blue:180/255.0 alpha:1] textFont:[UIFont systemFontOfSize:12.0] alpha:0.9 timer:2.0];
             break;
         }
             case 15:
