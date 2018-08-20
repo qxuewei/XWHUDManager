@@ -22,6 +22,13 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     data = @[@"无限展示小菊花",@"在当前View展示一个小菊花",@"loading... 小菊花",@"显示隐藏自定义文本菊花",@"window上显示文本提示框",@"限时隐藏在view展示一个有文本提示框",@"正确提示",@"有文本正确提示",@"错误提示",@"有文本错误提示",@"信息提示",@"警告提示",@"自定义图片",@"序列帧",@"GIF",@"自定义提示语"];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"测试" style:UIBarButtonItemStylePlain target:self action:@selector(testClick)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)testClick {
+    NSLog(@"点击 navigationItem 按钮");
 }
 
 #pragma mark - UITableViewDataSource
@@ -109,7 +116,7 @@
             case 15:
         {
             
-            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框" backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0] margin:10.0];
+            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框" backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]  textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0] margin:10.0 offset:CGPointMake(0, 300) isWindow:NO];
             break;
         }
         default:

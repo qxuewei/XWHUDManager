@@ -128,23 +128,10 @@ static NSTimer * kHideHUDTimer;
     [self p_showTipMessage:message isWindow:NO timer:afterSecond];
 }
 
-///在 KeyWindow 上展示提示语 - 1秒后移除
-+ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin {
-
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[self p_getKeyWindow] animated:NO];
-    hud.mode = MBProgressHUDModeText;
-    hud.removeFromSuperViewOnHide = YES;
-    hud.label.text = message ? message : @"加载中...";
-    hud.backgroundView.color = [UIColor clearColor];
-    hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
-    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    if (margin > 0.0 && margin < 20.0) {
-        hud.margin = margin;
-    }
-    hud.bezelView.color = backgroundColor ?: [UIColor blackColor];
-    hud.label.textColor = textColor ?: [UIColor whiteColor];
-    hud.label.font = textFont?: [UIFont systemFontOfSize:kFONT_SIZE];
-    [hud hideAnimated:YES afterDelay:kHideHUDTimeInterval];
+///在 KeyWindow 上展示自定义提示语 - 1秒后移除
++ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow {
+    
+    [self p_showCustomTipMessage:message isWindow:isWindow backgroundColor:backgroundColor textColor:textColor textFont:textFont margin:margin offset:offset timer:kHideHUDTimeInterval];
 }
 
 
@@ -380,6 +367,24 @@ static NSTimer * kHideHUDTimer;
     [hud hideAnimated:YES afterDelay:aTimer];
 }
 
+/// 自定义文本框
++ (void)p_showCustomTipMessage:(NSString*)message isWindow:(BOOL)isWindow backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset timer:(NSTimeInterval)aTimer {
+    
+    MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+    hud.mode = MBProgressHUDModeText;
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    if (margin > 0.0 && margin < 20.0) {
+        hud.margin = margin;
+    }
+    hud.bezelView.color = backgroundColor ?: [UIColor blackColor];
+    hud.label.textColor = textColor ?: [UIColor whiteColor];
+    hud.label.font = textFont?: [UIFont systemFontOfSize:kFONT_SIZE];
+    if (!CGPointEqualToPoint(offset, CGPointZero)) {
+        hud.offset = offset;
+    }
+    [hud hideAnimated:YES afterDelay:aTimer];
+}
+
 /// 小菊花
 + (void)p_showActivityMessage:(NSString*)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
     MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
@@ -473,8 +478,9 @@ static NSTimer * kHideHUDTimer;
     
     UIView *view = isWindow ? [self p_getKeyWindow] : [self p_getCurrentUIVC].view;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.defaultMotionEffectsEnabled = NO;
     hud.removeFromSuperViewOnHide = YES;
-    hud.label.text = message ? message : @"加载中...";
+    hud.label.text = message ?: @"加载中...";
     hud.label.font = [UIFont systemFontOfSize:kFONT_SIZE];
     hud.backgroundView.color = [UIColor clearColor];
     hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;

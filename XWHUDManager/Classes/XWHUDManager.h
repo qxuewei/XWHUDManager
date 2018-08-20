@@ -125,15 +125,27 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)showTipHUDInView:(NSString *)message afterDelay:(NSTimeInterval)afterSecond;
 
 /**
- 在 KeyWindow 上展示提示语 - 1秒后移除
  
+ 
+ @param message
+ @param backgroundColor
+ @param textColor 文本色
+ @param textFont 字体
+ @param margin 边框间距
+ */
+
+/**
+ 在 KeyWindow 上展示自定义提示语 - 1秒后移除
+
  @param message 提示语
  @param backgroundColor 背景色
  @param textColor 文本色
  @param textFont 字体
  @param margin 边框间距
+ @param offset 距离中心点偏移
+ @param isWindow 是否在 window 展示
  */
-+ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin;
++ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow;
 
 #pragma mark - 提示图片
 /**
