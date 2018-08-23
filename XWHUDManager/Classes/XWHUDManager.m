@@ -105,33 +105,33 @@ static NSTimer * kHideHUDTimer;
 
 #pragma mark - 文本提示框
 /// 在window上显示文本提示框
-+ (void)showTipHUD:(NSString *)message {
++ (void)showTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed {
     
-    [self p_showTipMessage:message isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:YES timer:kHideHUDTimeInterval];
 }
 
 /// 在window上显示文本提示框
-+ (void)showTipHUDInView:(NSString *)message {
++ (void)showTipHUDInView:(NSString *)message isLineFeed:(BOOL)isLineFeed{
     
-    [self p_showTipMessage:message isWindow:NO timer:kHideHUDTimeInterval];
+    [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:NO timer:kHideHUDTimeInterval];
 }
 
 /// 限时隐藏在window展示一个有文本提示框
-+ (void)showTipHUD:(NSString *)message afterDelay:(NSTimeInterval)afterSecond{
++ (void)showTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed afterDelay:(NSTimeInterval)afterSecond{
     
-    [self p_showTipMessage:message isWindow:YES timer:afterSecond];
+    [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:YES timer:afterSecond];
 }
 
 /// 限时隐藏在view展示一个有文本提示框
-+ (void)showTipHUDInView:(NSString *)message afterDelay:(NSTimeInterval)afterSecond{
++ (void)showTipHUDInView:(NSString *)message isLineFeed:(BOOL)isLineFeed afterDelay:(NSTimeInterval)afterSecond{
     
-    [self p_showTipMessage:message isWindow:NO timer:afterSecond];
+    [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:NO timer:afterSecond];
 }
 
 ///在 KeyWindow 上展示自定义提示语 - 1秒后移除
-+ (void)showCustomTipHUD:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow {
++ (void)showCustomTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow {
     
-    [self p_showCustomTipMessage:message isWindow:isWindow backgroundColor:backgroundColor textColor:textColor textFont:textFont margin:margin offset:offset timer:kHideHUDTimeInterval];
+    [self p_showCustomTipMessage:message isLineFeed:isLineFeed isWindow:isWindow backgroundColor:backgroundColor textColor:textColor textFont:textFont margin:margin offset:offset timer:kHideHUDTimeInterval];
 }
 
 
@@ -360,15 +360,19 @@ static NSTimer * kHideHUDTimer;
 
 #pragma mark - private
 /// 文本框
-+ (void)p_showTipMessage:(NSString*)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
++ (void)p_showTipMessage:(NSString*)message isLineFeed:(BOOL)isLineFeed isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
     
     MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeText;
+    if (isLineFeed) {
+        hud.label.text = nil;
+        hud.detailsLabel.text = message ?: @"加载中...";
+    }
     [hud hideAnimated:YES afterDelay:aTimer];
 }
 
 /// 自定义文本框
-+ (void)p_showCustomTipMessage:(NSString*)message isWindow:(BOOL)isWindow backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset timer:(NSTimeInterval)aTimer {
++ (void)p_showCustomTipMessage:(NSString*)message isLineFeed:(BOOL)isLineFeed isWindow:(BOOL)isWindow backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset timer:(NSTimeInterval)aTimer {
     
     MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeText;
@@ -378,9 +382,13 @@ static NSTimer * kHideHUDTimer;
     }
     hud.bezelView.color = backgroundColor ?: [UIColor blackColor];
     hud.label.textColor = textColor ?: [UIColor whiteColor];
-    hud.label.font = textFont?: [UIFont systemFontOfSize:kFONT_SIZE];
+    hud.detailsLabel.font = hud.label.font = textFont?: [UIFont systemFontOfSize:kFONT_SIZE];
     if (!CGPointEqualToPoint(offset, CGPointZero)) {
         hud.offset = offset;
+    }
+    if (isLineFeed) {
+        hud.label.text = nil;
+        hud.detailsLabel.text = message ?: @"加载中...";
     }
     [hud hideAnimated:YES afterDelay:aTimer];
 }
@@ -481,7 +489,7 @@ static NSTimer * kHideHUDTimer;
     hud.defaultMotionEffectsEnabled = NO;
     hud.removeFromSuperViewOnHide = YES;
     hud.label.text = message ?: @"加载中...";
-    hud.label.font = [UIFont systemFontOfSize:kFONT_SIZE];
+    hud.detailsLabel.font = hud.label.font = [UIFont systemFontOfSize:kFONT_SIZE];
     hud.backgroundView.color = [UIColor clearColor];
     hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
     hud.bezelView.style = MBProgressHUDBackgroundStyleBlur;

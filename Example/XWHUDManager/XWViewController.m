@@ -69,10 +69,10 @@
             [XWHUDManager showHUDMessage:@"加载中..." afterDelay:1.5];
             break;
         case 4:
-            [XWHUDManager showTipHUD:@"www.qiuxuewei.com"];
+            [XWHUDManager showTipHUD:@"www.qiuxuewei.com  www.qiuxuewei.com   www.qiuxuewei.com   www.qiuxuewei.com" isLineFeed:NO];
             break;
         case 5:
-            [XWHUDManager showTipHUDInView:@"加油!" afterDelay:3];
+            [XWHUDManager showTipHUDInView:@"极客学伟, 加油! 极客学伟, 加油! 极客学伟, 加油! 极客学伟, 加油!" isLineFeed:YES afterDelay:3];
             break;
         case 6:
             [XWHUDManager showSuccessHUD];
@@ -116,7 +116,7 @@
             case 15:
         {
             
-            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框" backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]  textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0] margin:10.0 offset:CGPointMake(0, 300) isWindow:NO];
+            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框 - 极客学伟加油! 这是个自定义的提示框 - 极客学伟加油!  这是个自定义的提示框 - 极客学伟加油!  这是个自定义的提示框 - 极客学伟加油!" isLineFeed:YES backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]  textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0] margin:10.0 offset:CGPointMake(0, 300) isWindow:NO];
             break;
         }
         default:

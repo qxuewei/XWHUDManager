@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XWHUDManager'
-  s.version          = '0.2.3.2'
+  s.version          = '0.2.3.3'
   s.summary          = 'MBProgressHUD 封装.'
 
 # This description is used to generate tags and improve search results.
