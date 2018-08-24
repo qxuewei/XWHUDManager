@@ -69,10 +69,10 @@
             [XWHUDManager showHUDMessage:@"加载中..." afterDelay:1.5];
             break;
         case 4:
-            [XWHUDManager showTipHUD:@"www.qiuxuewei.com  www.qiuxuewei.com   www.qiuxuewei.com   www.qiuxuewei.com" isLineFeed:NO];
+            [XWHUDManager showTipHUD:@"www.qiuxuewei.com" isLineFeed:NO];
             break;
         case 5:
-            [XWHUDManager showTipHUDInView:@"极客学伟, 加油! 极客学伟, 加油! 极客学伟, 加油! 极客学伟, 加油!" isLineFeed:YES afterDelay:3];
+            [XWHUDManager showTipHUDInView:@"极客学伟, 加油! " isLineFeed:YES afterDelay:3];
             break;
         case 6:
             [XWHUDManager showSuccessHUD];
@@ -123,7 +123,7 @@
             break;
     }
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(hideMthod) userInfo:nil repeats:NO];
+    timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(hideMthod) userInfo:nil repeats:NO];
 }
 
 - (void)hideMthod {
