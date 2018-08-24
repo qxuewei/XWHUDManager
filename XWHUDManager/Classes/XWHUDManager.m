@@ -359,7 +359,7 @@ static NSTimer * kHideHUDTimer;
     MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeCustomView;
     
-    NSString *normalImgName = [NSString stringWithFormat:@"%@@2x.png", iconName];
+    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDManager_%@@2x.png", iconName];
     NSBundle *curBundle = [NSBundle bundleForClass:self.class];
     NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
     NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
