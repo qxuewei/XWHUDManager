@@ -7,7 +7,7 @@
 
 ## Example
 
-<img src='https://raw.githubusercontent.com/qxuewei/XWHUDManager/master/Gif/ScreenRecording_08-24-2018%2011-19-58.2018-08-24%2011_34_41.gif'>
+<img src='https://raw.githubusercontent.com/qxuewei/XWHUDManager/master/Gif/ScreenRecording.gif'>
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
@@ -29,3 +29,5 @@ qxuewei, qiuxuewei@peiwo.cn
 ## License
 
 XWHUDManager is available under the MIT license. See the LICENSE file for more info.
+
+
