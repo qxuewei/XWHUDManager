@@ -10,10 +10,10 @@
 
 @implementation XWHUDManager
 /// 隐藏蒙版默认时间
-static const NSTimeInterval kHideHUDTimeInterval = 1.0f;
+static const NSTimeInterval kXWHUDHideTimeInterval = 1.0f;
 /// 提示框文字大小
-static CGFloat kFONT_SIZE = 13.0f;
-static NSTimer * kHideHUDTimer;
+static CGFloat kXWHUDDefaultFontSize = 13.0f;
+static NSTimer * kXWHUDkHideHUDTimer;
 
 #pragma mark - 隐藏HUD
 /// 隐藏蒙版(无论在view还是window)
@@ -24,8 +24,8 @@ static NSTimer * kHideHUDTimer;
 
 /// 延时隐藏蒙版(无论在view还是window)
 + (void)hideDelay:(NSTimeInterval)delaySeconds{
-    [kHideHUDTimer invalidate];
-    kHideHUDTimer = [NSTimer xw_timerTimeInterval:delaySeconds block:^{
+    [kXWHUDkHideHUDTimer invalidate];
+    kXWHUDkHideHUDTimer = [NSTimer xw_timerTimeInterval:delaySeconds block:^{
         [XWHUDManager hide];
     } repeats:NO];
 }
@@ -90,22 +90,22 @@ static NSTimer * kHideHUDTimer;
 #pragma mark - 文本提示框
 /// 在KeyWindow上显示文本提示框 - 1秒后消失
 + (void)showTipHUD:(NSString *)message {
-    [self p_showTipMessage:message isLineFeed:NO isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showTipMessage:message isLineFeed:NO isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在当前视图上显示文本提示框 - 1秒后消失
 + (void)showTipHUDInView:(NSString *)message {
-    [self p_showTipMessage:message isLineFeed:NO isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showTipMessage:message isLineFeed:NO isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在window上显示文本提示框
 + (void)showTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed {
-    [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在window上显示文本提示框
 + (void)showTipHUDInView:(NSString *)message isLineFeed:(BOOL)isLineFeed {
-    [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:NO timer:kHideHUDTimeInterval];
+    [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 /// 限时隐藏在window展示一个有文本提示框
@@ -120,59 +120,59 @@ static NSTimer * kHideHUDTimer;
 
 ///在 KeyWindow 上展示自定义提示语 - 1秒后移除
 + (void)showCustomTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow {
-    [self p_showCustomTipMessage:message isLineFeed:isLineFeed isWindow:isWindow backgroundColor:backgroundColor textColor:textColor textFont:textFont margin:margin offset:offset timer:kHideHUDTimeInterval];
+    [self p_showCustomTipMessage:message isLineFeed:isLineFeed isWindow:isWindow backgroundColor:backgroundColor textColor:textColor textFont:textFont margin:margin offset:offset timer:kXWHUDHideTimeInterval];
 }
 
 
 #pragma mark - 提示图片
 /// 正确提示
 + (void)showSuccessHUD {
-    [self p_showCustomIcon:@"right" message:@"" isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"right" message:@"" isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 有文本正确提示
 + (void)showSuccessTipHUD:(NSString *)message {
-    [self p_showCustomIcon:@"right" message:message isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"right" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在view展示有文本正确提示
 + (void)showSuccessTipHUDInView:(NSString *)message {
-    [self p_showCustomIcon:@"right" message:message isWindow:NO timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"right" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 /// 错误提示
 + (void)showErrorHUD {
-    [self p_showCustomIcon:@"error" message:@"" isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"error" message:@"" isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 有文本错误提示
 + (void)showErrorTipHUD:(NSString *)message {
-    [self p_showCustomIcon:@"error" message:message isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"error" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在view有文本错误提示
 + (void)showErrorTipHUDInView:(NSString *)message {
-    [self p_showCustomIcon:@"error" message:message isWindow:NO timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"error" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 /// 信息提示
 + (void)showInfoTipHUD:(NSString *)message {
-    [self p_showCustomIcon:@"info" message:message isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"info" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在view信息提示
 + (void)showInfoTipHUDInView:(NSString *)message {
-    [self p_showCustomIcon:@"info" message:message isWindow:NO timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"info" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 /// 警告提示
 + (void)showWarningTipHUD:(NSString *)message {
-    [self p_showCustomIcon:@"tip" message:message isWindow:YES timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"tip" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在view警告提示
 + (void)showWarningTipHUDInView:(NSString *)message {
-    [self p_showCustomIcon:@"tip" message:message isWindow:NO timer:kHideHUDTimeInterval];
+    [self p_showCustomIcon:@"tip" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 #pragma mark - 自定义图片
@@ -336,7 +336,7 @@ static NSTimer * kHideHUDTimer;
     }
     hud.bezelView.color = backgroundColor ?: [UIColor blackColor];
     hud.label.textColor = textColor ?: [UIColor whiteColor];
-    hud.detailsLabel.font = hud.label.font = textFont?: [UIFont systemFontOfSize:kFONT_SIZE];
+    hud.detailsLabel.font = hud.label.font = textFont?: [UIFont systemFontOfSize:kXWHUDDefaultFontSize];
     if (!CGPointEqualToPoint(offset, CGPointZero)) {
         hud.offset = offset;
     }
@@ -442,7 +442,7 @@ static NSTimer * kHideHUDTimer;
     hud.defaultMotionEffectsEnabled = NO;
     hud.removeFromSuperViewOnHide = YES;
     hud.label.text = message ?: @"加载中...";
-    hud.detailsLabel.font = hud.label.font = [UIFont systemFontOfSize:kFONT_SIZE];
+    hud.detailsLabel.font = hud.label.font = [UIFont systemFontOfSize:kXWHUDDefaultFontSize];
     hud.backgroundView.color = [UIColor clearColor];
     hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
     hud.bezelView.style = MBProgressHUDBackgroundStyleBlur;
