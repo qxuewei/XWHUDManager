@@ -8,12 +8,6 @@
 #import "XWHUDManager.h"
 #import "MBProgressHUD.h"
 
-#pragma mark - Timer 
-@interface NSTimer (XWHUD)
-/// 弱引用Timer
-+ (NSTimer *)xwhud_timerTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block repeats:(BOOL)repeats;
-@end
-
 @implementation XWHUDManager
 /// 隐藏蒙版默认时间
 static const NSTimeInterval kHideHUDTimeInterval = 1.0f;
@@ -31,8 +25,7 @@ static NSTimer * kHideHUDTimer;
 /// 延时隐藏蒙版(无论在view还是window)
 + (void)hideDelay:(NSTimeInterval)delaySeconds{
     [kHideHUDTimer invalidate];
-    
-    kHideHUDTimer = [NSTimer xwhud_timerTimeInterval:delaySeconds block:^{
+    kHideHUDTimer = [NSTimer xw_timerTimeInterval:delaySeconds block:^{
         [XWHUDManager hide];
     } repeats:NO];
 }
@@ -43,182 +36,163 @@ static NSTimer * kHideHUDTimer;
 }
 
 /// 隐藏当前window上的HUD
-+ (void)hideInWindow{
++ (void)hideInWindow {
     [self p_hideHUDForView:[self p_getKeyWindow]];
 }
 
 
 #pragma mark - 小菊花
 /// 在window展示一个小菊花
-+ (void)showHUD{
-    
++ (void)showHUD {
     [self p_showActivityMessage:@"" isWindow:YES timer:HUGE_VALF];
 }
 
 /// 在window展示一个小菊花 (延时 afterSecond 秒 结束)
-+ (void)showHUDAfterDelay:(NSTimeInterval)afterSecond{
-    
++ (void)showHUDAfterDelay:(NSTimeInterval)afterSecond {
     [self p_showActivityMessage:@"" isWindow:YES timer:afterSecond];
 }
 
 /// 在当前View展示一个小菊花
-+ (void)showHUDInView{
-    
++ (void)showHUDInView {
     [self p_showActivityMessage:@"" isWindow:NO timer:HUGE_VALF];
 }
 
 /// 在window展示一个 loading... 小菊花
 + (void)showHUDLoadingEN {
-    
     [self p_showActivityMessage:@"loading..." isWindow:YES timer:HUGE_VALF];
 }
 
 /// 在window展示一个 加载中... 小菊花
 + (void)showHUDLoadingCH {
-    
     [self p_showActivityMessage:@"加载中..." isWindow:YES timer:HUGE_VALF];
 }
 
 /// 在window展示一个有文本小菊花
 + (void)showHUDMessage:(NSString *)message {
-    
     [self p_showActivityMessage:message isWindow:YES timer:HUGE_VALF];
 }
 
 /// 限时隐藏在window展示一个 loading... 小菊花
-+ (void)showHUDLoadingAfterDelay:(NSTimeInterval)afterSecond{
-    
++ (void)showHUDLoadingAfterDelay:(NSTimeInterval)afterSecond {
     [self p_showActivityMessage:@"loading..." isWindow:YES timer:afterSecond];
 }
 
 /// 限时隐藏在window展示一个有文本小菊花
-+ (void)showHUDMessage:(NSString *)message afterDelay:(NSTimeInterval)afterSecond{
-    
++ (void)showHUDMessage:(NSString *)message afterDelay:(NSTimeInterval)afterSecond {
     [self p_showActivityMessage:message isWindow:YES timer:afterSecond];
 }
 
 /// 限时隐藏在view展示一个有文本小菊花
-+ (void)showHUDMessageInView:(NSString *)message afterDelay:(NSTimeInterval)afterSecond{
-    
++ (void)showHUDMessageInView:(NSString *)message afterDelay:(NSTimeInterval)afterSecond {
     [self p_showActivityMessage:message isWindow:NO timer:afterSecond];
 }
 
 #pragma mark - 文本提示框
+/// 在KeyWindow上显示文本提示框 - 1秒后消失
++ (void)showTipHUD:(NSString *)message {
+    [self p_showTipMessage:message isLineFeed:NO isWindow:YES timer:kHideHUDTimeInterval];
+}
+
+/// 在当前视图上显示文本提示框 - 1秒后消失
++ (void)showTipHUDInView:(NSString *)message {
+    [self p_showTipMessage:message isLineFeed:NO isWindow:YES timer:kHideHUDTimeInterval];
+}
+
 /// 在window上显示文本提示框
 + (void)showTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed {
-    
     [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:YES timer:kHideHUDTimeInterval];
 }
 
 /// 在window上显示文本提示框
-+ (void)showTipHUDInView:(NSString *)message isLineFeed:(BOOL)isLineFeed{
-    
++ (void)showTipHUDInView:(NSString *)message isLineFeed:(BOOL)isLineFeed {
     [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:NO timer:kHideHUDTimeInterval];
 }
 
 /// 限时隐藏在window展示一个有文本提示框
-+ (void)showTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed afterDelay:(NSTimeInterval)afterSecond{
-    
++ (void)showTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed afterDelay:(NSTimeInterval)afterSecond {
     [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:YES timer:afterSecond];
 }
 
 /// 限时隐藏在view展示一个有文本提示框
-+ (void)showTipHUDInView:(NSString *)message isLineFeed:(BOOL)isLineFeed afterDelay:(NSTimeInterval)afterSecond{
-    
++ (void)showTipHUDInView:(NSString *)message isLineFeed:(BOOL)isLineFeed afterDelay:(NSTimeInterval)afterSecond {
     [self p_showTipMessage:message isLineFeed:isLineFeed isWindow:NO timer:afterSecond];
 }
 
 ///在 KeyWindow 上展示自定义提示语 - 1秒后移除
 + (void)showCustomTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow {
-    
     [self p_showCustomTipMessage:message isLineFeed:isLineFeed isWindow:isWindow backgroundColor:backgroundColor textColor:textColor textFont:textFont margin:margin offset:offset timer:kHideHUDTimeInterval];
 }
-
 
 
 #pragma mark - 提示图片
 /// 正确提示
 + (void)showSuccessHUD {
-    
     [self p_showCustomIcon:@"right" message:@"" isWindow:YES timer:kHideHUDTimeInterval];
 }
 
 /// 有文本正确提示
 + (void)showSuccessTipHUD:(NSString *)message {
-    
     [self p_showCustomIcon:@"right" message:message isWindow:YES timer:kHideHUDTimeInterval];
 }
 
 /// 在view展示有文本正确提示
 + (void)showSuccessTipHUDInView:(NSString *)message {
-    
     [self p_showCustomIcon:@"right" message:message isWindow:NO timer:kHideHUDTimeInterval];
 }
 
 /// 错误提示
 + (void)showErrorHUD {
-    
     [self p_showCustomIcon:@"error" message:@"" isWindow:YES timer:kHideHUDTimeInterval];
 }
 
 /// 有文本错误提示
 + (void)showErrorTipHUD:(NSString *)message {
-    
     [self p_showCustomIcon:@"error" message:message isWindow:YES timer:kHideHUDTimeInterval];
 }
 
 /// 在view有文本错误提示
 + (void)showErrorTipHUDInView:(NSString *)message {
-    
     [self p_showCustomIcon:@"error" message:message isWindow:NO timer:kHideHUDTimeInterval];
 }
 
 /// 信息提示
 + (void)showInfoTipHUD:(NSString *)message {
-    
     [self p_showCustomIcon:@"info" message:message isWindow:YES timer:kHideHUDTimeInterval];
 }
 
 /// 在view信息提示
 + (void)showInfoTipHUDInView:(NSString *)message {
-    
     [self p_showCustomIcon:@"info" message:message isWindow:NO timer:kHideHUDTimeInterval];
 }
 
 /// 警告提示
 + (void)showWarningTipHUD:(NSString *)message {
-    
     [self p_showCustomIcon:@"tip" message:message isWindow:YES timer:kHideHUDTimeInterval];
 }
 
 /// 在view警告提示
 + (void)showWarningTipHUDInView:(NSString *)message {
-    
     [self p_showCustomIcon:@"tip" message:message isWindow:NO timer:kHideHUDTimeInterval];
 }
 
 #pragma mark - 自定义图片
 /// 展示自定义图片 - 图片需要导入 'XWHUDImages.bundle' 包中
 + (void)showCustomIconHUD:(NSString *)iconName message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showCustomIcon:iconName message:message isWindow:YES timer:aTimer];
 }
 
 /// 在view上展示自定义图片 - 图片需要导入 'XWHUDImages.bundle' 包中
 + (void)showCustomIconHUDInView:(NSString *)iconName message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showCustomIcon:iconName message:message isWindow:NO timer:aTimer];
 }
 
 /// 展示自定义图片 - 图片需要导入 'XWHUDImages.bundle' 包中 - 不自动移除
 + (void)showCustomIconHUD:(NSString *)iconName message:(NSString *)message {
-    
     [self p_showCustomIcon:iconName message:message isWindow:YES timer:HUGE_VALF];
 }
 
 /// 在view上展示自定义图片 - 图片需要导入 'XWHUDImages.bundle' 包中 - 不自动移除
 + (void)showCustomIconHUDInView:(NSString *)iconName message:(NSString *)message {
-    
     [self p_showCustomIcon:iconName message:message isWindow:NO timer:HUGE_VALF];
 }
 
@@ -226,25 +200,21 @@ static NSTimer * kHideHUDTimer;
 #pragma mark - 自定义图片+提示语(图片外界传入)
 /// 展示自定义图片
 + (void)showCustomImageHUD:(UIImage *)image message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showCustomImage:image message:message isWindow:YES timer:aTimer];
 }
 
 /// 在view上展示自定义图片
 + (void)showCustomImageHUDInView:(UIImage *)image message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showCustomImage:image message:message isWindow:NO timer:aTimer];
 }
 
 /// 展示自定义图片 - 不自动移除
 + (void)showCustomImageHUD:(UIImage *)image message:(NSString *)message {
-    
     [self p_showCustomImage:image message:message isWindow:YES timer:HUGE_VALF];
 }
 
 /// 在view上展示自定义图片 - 不自动移除
 + (void)showCustomImageHUDInView:(UIImage *)image message:(NSString *)message {
-    
     [self p_showCustomImage:image message:message isWindow:NO timer:HUGE_VALF];
 }
 
@@ -252,76 +222,62 @@ static NSTimer * kHideHUDTimer;
 #pragma mark - 提示序列帧图片
 /// 展示自定义序列帧图片
 + (void)showCustomImagesHUD:(NSArray <UIImage *> *)images message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showCustomImages:images message:message isWindow:YES timer:aTimer > 0 ? aTimer : images.count * 0.1];
 }
 /// 在view上展示自定义序列帧图片
 + (void)showCustomImagesHUDInView:(NSArray <UIImage *> *)images message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showCustomImages:images message:message isWindow:NO timer:aTimer > 0 ? aTimer : images.count * 0.1];
 }
 /// 展示自定义序列帧图片 - 不自动移除
 + (void)showCustomImagesHUD:(NSArray <UIImage *> *)images message:(NSString *)message {
-    
     [self p_showCustomImages:images message:message isWindow:YES timer:HUGE_VALF];
 }
 /// 在view上展示自定义序列帧图片 - 不自动移除
 + (void)showCustomImagesHUDInView:(NSArray <UIImage *> *)images message:(NSString *)message {
-    
     [self p_showCustomImages:images message:message isWindow:NO timer:HUGE_VALF];
 }
 
 #pragma mark - 提示GIF图片  (传入Gif 文件名)
 /// 展示自定义GIF图片
 + (void)showGifImagesHUD:(NSString *)gifFileName message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showGifImagesHUD:gifFileName message:message isWindow:YES timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 在view上展示自定义GIF图片
 + (void)showGifImagesHUDInView:(NSString *)gifFileName message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showGifImagesHUD:gifFileName message:message isWindow:NO timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 展示自定义GIF图片 - 不自动移除
 + (void)showGifImagesHUD:(NSString *)gifFileName message:(NSString *)message {
-    
     [self p_showGifImagesHUD:gifFileName message:message isWindow:YES timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 在view上展示自定义GIF图片 - 不自动移除
 + (void)showGifImagesHUDInView:(NSString *)gifFileName message:(NSString *)message {
-    
     [self p_showGifImagesHUD:gifFileName message:message isWindow:NO timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 
 #pragma mark - 提示GIF图片 (传入Gif 图片)
 /// 展示自定义GIF图片
 + (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 在view上展示自定义GIF图片
 + (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message timer:(NSTimeInterval)aTimer {
-    
     [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 展示自定义GIF图片 - 不自动移除
 + (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message {
-    
     [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 在view上展示自定义GIF图片 - 不自动移除
 + (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message {
-    
     [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
 /// 展示自定义GIF图片 - 不自动移除
 + (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha timer:(NSTimeInterval)aTimer {
-    
     [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:(aTimer > 0 ? aTimer : HUGE_VALF) backgroundColor:backgroundColor textColor:textColor textFont:textFont alpha:alpha];
 }
 /// 在view上展示自定义GIF图片 - 不自动移除
 + (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha timer:(NSTimeInterval)aTimer {
-    
     [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:(aTimer > 0 ? aTimer : HUGE_VALF) backgroundColor:backgroundColor textColor:textColor textFont:textFont alpha:alpha];
 }
 
@@ -361,7 +317,6 @@ static NSTimer * kHideHUDTimer;
 #pragma mark - private
 /// 文本框
 + (void)p_showTipMessage:(NSString*)message isLineFeed:(BOOL)isLineFeed isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
-    
     MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeText;
     if (isLineFeed) {
@@ -373,7 +328,6 @@ static NSTimer * kHideHUDTimer;
 
 /// 自定义文本框
 + (void)p_showCustomTipMessage:(NSString*)message isLineFeed:(BOOL)isLineFeed isWindow:(BOOL)isWindow backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset timer:(NSTimeInterval)aTimer {
-    
     MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeText;
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
@@ -483,7 +437,6 @@ static NSTimer * kHideHUDTimer;
 
 /// 全局统一生成提示框对象
 + (MBProgressHUD *)p_createMBProgressHUDviewWithMessage:(NSString*)message isWindiw:(BOOL)isWindow {
-    
     UIView *view = isWindow ? [self p_getKeyWindow] : [self p_getCurrentUIVC].view;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.defaultMotionEffectsEnabled = NO;
@@ -512,7 +465,6 @@ static NSTimer * kHideHUDTimer;
 
 /// 获取当前屏幕显示的viewcontroller
 + (UIViewController *)p_getCurrentUIVC {
-    
     UIViewController  *superVC = [[self class]  p_getCurrentWindowVC ];
     if ([superVC isKindOfClass:[UITabBarController class]]) {
         UIViewController  *tabSelectVC = ((UITabBarController*)superVC).selectedViewController;
@@ -581,7 +533,7 @@ static NSTimer * kHideHUDTimer;
 
 #pragma mark - NSTimer
 @implementation NSTimer (XWHUD)
-+ (NSTimer *)xwhud_timerTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block repeats:(BOOL)repeats {
++ (NSTimer *)xw_timerTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block repeats:(BOOL)repeats {
     NSTimer *timer = [NSTimer timerWithTimeInterval:timeInterval target:self selector:@selector(timerMethod:) userInfo:block repeats:repeats];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     return timer;

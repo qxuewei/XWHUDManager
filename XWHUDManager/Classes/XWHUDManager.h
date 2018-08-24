@@ -9,6 +9,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - Timer
+@interface NSTimer (XWHUD)
+/**
+ 弱引用Timer - 自动释放
+
+ @param timeInterval 间隔时间
+ @param block 操作, 注意需要弱引用当前控制器
+ @param repeats 是否重复
+ @return 弱引用Timer
+ */
++ (NSTimer *)xw_timerTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block repeats:(BOOL)repeats;
+@end
+
 @interface XWHUDManager : NSObject
 
 #pragma mark - 隐藏HUD
@@ -94,6 +107,22 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)showHUDMessageInView:(NSString *)message afterDelay:(NSTimeInterval)afterSecond;
 
 #pragma mark - 文本提示框
+
+/**
+ 在KeyWindow上显示文本提示框 - 1秒后消失
+ 
+ @param message 提示语
+ */
++ (void)showTipHUD:(NSString *)message;
+
+/**
+ 在当前视图上显示文本提示框 - 1秒后消失
+ 
+ @param message 提示语
+ */
++ (void)showTipHUDInView:(NSString *)message;
+
+
 /**
  在KeyWindow上显示文本提示框 - 1秒后消失
  
