@@ -1,7 +1,9 @@
 use_frameworks!
 
 target 'XWHUDManager_Example' do
-  pod 'XWHUDManager', :path => '../'
+#  pod 'XWHUDManager', :path => '../'
+
+  pod 'MBProgressHUD'
 
   target 'XWHUDManager_Tests' do
     inherit! :search_paths

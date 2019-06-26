@@ -31,6 +31,15 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		B6B7AE4B22C3926A0052AC6E /* XWHUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE3E22C3926A0052AC6E /* XWHUDManager.m */; };
+		B6B7AE4D22C3926A0052AC6E /* XWHUDManager_info@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B7AE4222C3926A0052AC6E /* XWHUDManager_info@3x.png */; };
+		B6B7AE4E22C3926A0052AC6E /* XWHUDManager_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B7AE4322C3926A0052AC6E /* XWHUDManager_right@2x.png */; };
+		B6B7AE4F22C3926A0052AC6E /* XWHUDManager_right@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B7AE4422C3926A0052AC6E /* XWHUDManager_right@3x.png */; };
+		B6B7AE5022C3926A0052AC6E /* XWHUDManager_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B7AE4522C3926A0052AC6E /* XWHUDManager_info@2x.png */; };
+		B6B7AE5222C3926A0052AC6E /* XWHUDManager_tip@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B7AE4722C3926A0052AC6E /* XWHUDManager_tip@3x.png */; };
+		B6B7AE5322C3926A0052AC6E /* XWHUDManager_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B7AE4822C3926A0052AC6E /* XWHUDManager_error@3x.png */; };
+		B6B7AE5422C3926A0052AC6E /* XWHUDManager_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B7AE4922C3926A0052AC6E /* XWHUDManager_error@2x.png */; };
+		B6B7AE5522C3926A0052AC6E /* XWHUDManager_tip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B7AE4A22C3926A0052AC6E /* XWHUDManager_tip@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +88,16 @@
 		81C3577E02A7FEA0845F6C07 /* Pods-XWHUDManager_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWHUDManager_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XWHUDManager_Tests/Pods-XWHUDManager_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		914456C380D19F23EEF53ED3 /* Pods-XWHUDManager_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWHUDManager_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XWHUDManager_Tests/Pods-XWHUDManager_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		B6B7AE3E22C3926A0052AC6E /* XWHUDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWHUDManager.m; sourceTree = "<group>"; };
+		B6B7AE4022C3926A0052AC6E /* XWHUDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWHUDManager.h; sourceTree = "<group>"; };
+		B6B7AE4222C3926A0052AC6E /* XWHUDManager_info@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XWHUDManager_info@3x.png"; sourceTree = "<group>"; };
+		B6B7AE4322C3926A0052AC6E /* XWHUDManager_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XWHUDManager_right@2x.png"; sourceTree = "<group>"; };
+		B6B7AE4422C3926A0052AC6E /* XWHUDManager_right@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XWHUDManager_right@3x.png"; sourceTree = "<group>"; };
+		B6B7AE4522C3926A0052AC6E /* XWHUDManager_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XWHUDManager_info@2x.png"; sourceTree = "<group>"; };
+		B6B7AE4722C3926A0052AC6E /* XWHUDManager_tip@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XWHUDManager_tip@3x.png"; sourceTree = "<group>"; };
+		B6B7AE4822C3926A0052AC6E /* XWHUDManager_error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XWHUDManager_error@3x.png"; sourceTree = "<group>"; };
+		B6B7AE4922C3926A0052AC6E /* XWHUDManager_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XWHUDManager_error@2x.png"; sourceTree = "<group>"; };
+		B6B7AE4A22C3926A0052AC6E /* XWHUDManager_tip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XWHUDManager_tip@2x.png"; sourceTree = "<group>"; };
 		C1ADA3084198A72B3BB90A86 /* Pods_XWHUDManager_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XWHUDManager_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDD3F87AE9485EBA68C0066 /* Pods-XWHUDManager_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWHUDManager_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +190,7 @@
 		6003F593195388D20070C39A /* Example for XWHUDManager */ = {
 			isa = PBXGroup;
 			children = (
+				B6B7AE3C22C3926A0052AC6E /* XWHUDManager */,
 				6003F59C195388D20070C39A /* XWAppDelegate.h */,
 				6003F59D195388D20070C39A /* XWAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -225,6 +245,40 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		B6B7AE3C22C3926A0052AC6E /* XWHUDManager */ = {
+			isa = PBXGroup;
+			children = (
+				B6B7AE3D22C3926A0052AC6E /* Classes */,
+				B6B7AE4122C3926A0052AC6E /* Assets */,
+			);
+			name = XWHUDManager;
+			path = ../../XWHUDManager;
+			sourceTree = "<group>";
+		};
+		B6B7AE3D22C3926A0052AC6E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B6B7AE3E22C3926A0052AC6E /* XWHUDManager.m */,
+				B6B7AE4022C3926A0052AC6E /* XWHUDManager.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B6B7AE4122C3926A0052AC6E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B6B7AE4222C3926A0052AC6E /* XWHUDManager_info@3x.png */,
+				B6B7AE4322C3926A0052AC6E /* XWHUDManager_right@2x.png */,
+				B6B7AE4422C3926A0052AC6E /* XWHUDManager_right@3x.png */,
+				B6B7AE4522C3926A0052AC6E /* XWHUDManager_info@2x.png */,
+				B6B7AE4722C3926A0052AC6E /* XWHUDManager_tip@3x.png */,
+				B6B7AE4822C3926A0052AC6E /* XWHUDManager_error@3x.png */,
+				B6B7AE4922C3926A0052AC6E /* XWHUDManager_error@2x.png */,
+				B6B7AE4A22C3926A0052AC6E /* XWHUDManager_tip@2x.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,7 +290,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				D0F332F719493A9E436F82DF /* [CP] Embed Pods Frameworks */,
+				2C4990589C5B0A0623E865C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -290,6 +344,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -311,11 +366,19 @@
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				2E9962022126298300AB9F73 /* wildcat_gif_1@2x.png in Resources */,
+				B6B7AE5522C3926A0052AC6E /* XWHUDManager_tip@2x.png in Resources */,
+				B6B7AE5422C3926A0052AC6E /* XWHUDManager_error@2x.png in Resources */,
+				B6B7AE4E22C3926A0052AC6E /* XWHUDManager_right@2x.png in Resources */,
+				B6B7AE5322C3926A0052AC6E /* XWHUDManager_error@3x.png in Resources */,
 				2E9961FE2126298300AB9F73 /* wildcat_gif_2@2x.png in Resources */,
+				B6B7AE4F22C3926A0052AC6E /* XWHUDManager_right@3x.png in Resources */,
+				B6B7AE4D22C3926A0052AC6E /* XWHUDManager_info@3x.png in Resources */,
 				2E9962012126298300AB9F73 /* loading@2x.gif in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				2E9961FF2126298300AB9F73 /* wildcat_gif_6@2x.png in Resources */,
+				B6B7AE5222C3926A0052AC6E /* XWHUDManager_tip@3x.png in Resources */,
 				2E9962042126298300AB9F73 /* wildcat_gif_5@2x.png in Resources */,
+				B6B7AE5022C3926A0052AC6E /* XWHUDManager_info@2x.png in Resources */,
 				2E9962032126298300AB9F73 /* wildcat_gif_3@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				2E9962002126298300AB9F73 /* wildcat_gif_4@2x.png in Resources */,
@@ -334,6 +397,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C4990589C5B0A0623E865C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		700F56E0299BC51F42344136 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,26 +451,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D0F332F719493A9E436F82DF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/XWHUDManager/XWHUDManager.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XWHUDManager.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XWHUDManager_Example/Pods-XWHUDManager_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -397,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6B7AE4B22C3926A0052AC6E /* XWHUDManager.m in Sources */,
 				6003F59E195388D20070C39A /* XWAppDelegate.m in Sources */,
 				2E09392E2126408F00BF8249 /* XWViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

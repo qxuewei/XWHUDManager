@@ -119,8 +119,8 @@ static NSTimer * kXWHUDkHideHUDTimer;
 }
 
 ///在 KeyWindow 上展示自定义提示语 - 1秒后移除
-+ (void)showCustomTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow {
-    [self p_showCustomTipMessage:message isLineFeed:isLineFeed isWindow:isWindow backgroundColor:backgroundColor textColor:textColor textFont:textFont margin:margin offset:offset timer:kXWHUDHideTimeInterval];
++ (void)showCustomTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow timer:(NSTimeInterval)time {
+    [self p_showCustomTipMessage:message isLineFeed:isLineFeed isWindow:isWindow backgroundColor:backgroundColor textColor:textColor textFont:textFont margin:margin offset:offset timer:time];
 }
 
 
@@ -360,13 +360,15 @@ static NSTimer * kXWHUDkHideHUDTimer;
     hud.mode = MBProgressHUDModeCustomView;
     
     NSString *normalImgName = [NSString stringWithFormat:@"XWHUDManager_%@@2x.png", iconName];
-    NSBundle *curBundle = [NSBundle bundleForClass:self.class];
-    NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
-    NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
-    NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
-    UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
     
-    hud.customView = [[UIImageView alloc] initWithImage:normalImage];
+        NSBundle *curBundle = [NSBundle bundleForClass:self.class];
+        NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
+        NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
+        NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
+        UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
+        hud.customView = [[UIImageView alloc] initWithImage:normalImage];
+    
+//    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:normalImgName]];
     [hud hideAnimated:YES afterDelay:aTimer];
 }
 
@@ -441,7 +443,8 @@ static NSTimer * kXWHUDkHideHUDTimer;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.defaultMotionEffectsEnabled = NO;
     hud.removeFromSuperViewOnHide = YES;
-    hud.label.text = message ?: @"加载中...";
+    hud.label.text = @" ";
+    hud.detailsLabel.text = message ?: @"加载中...";
     hud.detailsLabel.font = hud.label.font = [UIFont systemFontOfSize:kXWHUDDefaultFontSize];
     hud.backgroundView.color = [UIColor clearColor];
     hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
@@ -465,46 +468,50 @@ static NSTimer * kXWHUDkHideHUDTimer;
 
 /// 获取当前屏幕显示的viewcontroller
 + (UIViewController *)p_getCurrentUIVC {
-    UIViewController  *superVC = [[self class]  p_getCurrentWindowVC ];
-    if ([superVC isKindOfClass:[UITabBarController class]]) {
-        UIViewController  *tabSelectVC = ((UITabBarController*)superVC).selectedViewController;
-        if ([tabSelectVC isKindOfClass:[UINavigationController class]]) {
-            return ((UINavigationController*)tabSelectVC).viewControllers.lastObject;
-        }
-        return tabSelectVC;
-    }else
-        if ([superVC isKindOfClass:[UINavigationController class]]) {
-            return ((UINavigationController*)superVC).viewControllers.lastObject;
-        }
-    return superVC;
-}
-
-+ (UIViewController *)p_getCurrentWindowVC {
-    UIViewController *result = nil;
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-    if (window.windowLevel != UIWindowLevelNormal)
-    {
+    if (window.windowLevel != UIWindowLevelNormal){
         NSArray *windows = [[UIApplication sharedApplication] windows];
-        for(UIWindow * tempWindow in windows)
-        {
-            if (tempWindow.windowLevel == UIWindowLevelNormal)
-            {
-                window = tempWindow;
+        for(UIWindow * tmpWin in windows){
+            if (tmpWin.windowLevel == UIWindowLevelNormal){
+                window = tmpWin;
                 break;
             }
         }
     }
-    UIView *frontView = [[window subviews] objectAtIndex:0];
-    id nextResponder = [frontView nextResponder];
-    if ([nextResponder isKindOfClass:[UIViewController class]])
-    {
-        result = nextResponder;
+    UIViewController *result = [window.rootViewController.childViewControllers firstObject];
+    while (result.presentedViewController) {
+        result = result.presentedViewController;
     }
-    else
-    {
-        result = window.rootViewController;
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [(UITabBarController *)result selectedViewController];
     }
-    return  result;
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        UIViewController *tempVC = [(UINavigationController *)result topViewController];
+        if ([tempVC isKindOfClass:[UITabBarController class]]) {
+            result = [(UITabBarController *)tempVC selectedViewController];
+        } else {
+            return tempVC;
+        }
+    }
+    return result;
+}
+
++ (UINavigationController *)p_currentNavigationController {
+    UINavigationController *navigationController;
+    UIViewController *rootVC = [[UIApplication sharedApplication].keyWindow.rootViewController.childViewControllers firstObject];
+    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarVC = (UITabBarController *)rootVC;
+        UINavigationController *vc = tabBarVC.selectedViewController;
+        if (![vc isKindOfClass:[UINavigationController class]]) {
+            NSAssert(NO, @"tabBarViewController's selectedViewController is not a UINavigationController instance");
+        }
+        navigationController = vc;
+    } else if (![rootVC isKindOfClass:[UINavigationController class]]) {
+        navigationController = rootVC.navigationController;
+    } else {
+        navigationController = (UINavigationController *)rootVC;
+    }
+    return navigationController;
 }
 
 + (float)p_frameDurationAtIndex:(NSUInteger)index source:(CGImageSourceRef)source {

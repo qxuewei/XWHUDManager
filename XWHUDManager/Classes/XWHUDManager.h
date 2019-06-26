@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSTimer (XWHUD)
 /**
  弱引用Timer - 自动释放
-
+ 
  @param timeInterval 间隔时间
  @param block 操作, 注意需要弱引用当前控制器
  @param repeats 是否重复
@@ -159,7 +159,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  在 KeyWindow 上展示自定义提示语 - 1秒后移除
-
+ 
  @param message 提示语
  @param isLineFeed 是否自动换行
  @param backgroundColor 背景色
@@ -169,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param offset 距离中心点偏移
  @param isWindow 是否在 window 展示
  */
-+ (void)showCustomTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow;
++ (void)showCustomTipHUD:(NSString *)message isLineFeed:(BOOL)isLineFeed backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset isWindow:(BOOL)isWindow timer:(NSTimeInterval)time;
 
 #pragma mark - 提示图片
 /**

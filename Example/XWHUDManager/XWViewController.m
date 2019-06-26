@@ -115,8 +115,7 @@
         }
             case 15:
         {
-            
-            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框 - 极客学伟加油! 这是个自定义的提示框 - 极客学伟加油!  这是个自定义的提示框 - 极客学伟加油!  这是个自定义的提示框 - 极客学伟加油!" isLineFeed:YES backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]  textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0] margin:10.0 offset:CGPointMake(0, 300) isWindow:NO];
+            [XWHUDManager showCustomTipHUD:@"这是个自定义的提示框 - 极客学伟加油! 这是个自定义的提示框 - 极客学伟加油!  这是个自定义的提示框 - 极客学伟加油!  这是个自定义的提示框 - 极客学伟加油!" isLineFeed:YES backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]  textColor:[UIColor whiteColor] textFont:[UIFont systemFontOfSize:12.0] margin:10 offset:CGPointMake(0, 300) isWindow:NO timer:1.0];
             break;
         }
         default:
