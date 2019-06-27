@@ -277,7 +277,7 @@
 				ORGANIZATIONNAME = qxuewei;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = FVN7S34L6G;
+						DevelopmentTeam = GN5GPLJK9D;
 						ProvisioningStyle = Automatic;
 					};
 					6003F5AD195388D20070C39A = {
@@ -556,7 +556,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FVN7S34L6G;
+				DEVELOPMENT_TEAM = GN5GPLJK9D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XWHUDManager/XWHUDManager-Prefix.pch";
 				INFOPLIST_FILE = "XWHUDManager/XWHUDManager-Info.plist";
@@ -576,7 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FVN7S34L6G;
+				DEVELOPMENT_TEAM = GN5GPLJK9D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XWHUDManager/XWHUDManager-Prefix.pch";
 				INFOPLIST_FILE = "XWHUDManager/XWHUDManager-Info.plist";

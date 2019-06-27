@@ -18,6 +18,12 @@
 @end
 
 @implementation XWViewController
+
++ (void)initialize {
+    [XWHUDManager configHUDType:XWHUDManagerTypeDark];
+    [XWHUDManager configHUDFontSize:12.0];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -69,10 +75,10 @@
             [XWHUDManager showHUDMessage:@"加载中..." afterDelay:1.5];
             break;
         case 4:
-            [XWHUDManager showTipHUD:@"www.qiuxuewei.com" isLineFeed:NO];
+            [XWHUDManager showTipHUD:@"www.qiuxuewei.com && www.qiuxuewei.com && www.qiuxuewei.com" isLineFeed:NO];
             break;
         case 5:
-            [XWHUDManager showTipHUDInView:@"极客学伟, 加油! " isLineFeed:YES afterDelay:3];
+            [XWHUDManager showTipHUDInView:@"极客学伟, 加油! && www.qiuxuewei.com && && www.qiuxuewei.com " isLineFeed:YES afterDelay:3];
             break;
         case 6:
             [XWHUDManager showSuccessHUD];
