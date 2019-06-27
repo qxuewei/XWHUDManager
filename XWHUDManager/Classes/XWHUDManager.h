@@ -9,6 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, XWHUDManagerType) {
+    XWHUDManagerTypeDark,
+    XWHUDManagerTypeLight,
+};
+
 #pragma mark - Timer
 @interface NSTimer (XWHUD)
 /**
@@ -23,6 +28,22 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface XWHUDManager : NSObject
+
+#pragma mark - Config
+
+/**
+ 配置显示样式
+
+ @param type 样式
+ */
++ (void)configHUDType:(XWHUDManagerType)type;
+
+/**
+ 配置字体大小
+
+ @param fontSize 字体大小
+ */
++ (void)configHUDFontSize:(CGFloat)fontSize;
 
 #pragma mark - 隐藏HUD
 /**

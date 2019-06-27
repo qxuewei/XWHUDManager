@@ -9,11 +9,21 @@
 #import "MBProgressHUD.h"
 
 @implementation XWHUDManager
+static NSTimer * kXWHUDkHideHUDTimer;
 /// 隐藏蒙版默认时间
 static const NSTimeInterval kXWHUDHideTimeInterval = 1.0f;
 /// 提示框文字大小
 static CGFloat kXWHUDDefaultFontSize = 13.0f;
-static NSTimer * kXWHUDkHideHUDTimer;
+static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
+
+#pragma mark - Config
++ (void)configHUDType:(XWHUDManagerType)type {
+    kXWHUDManagerType = type;
+}
+
++ (void)configHUDFontSize:(CGFloat)fontSize {
+    kXWHUDDefaultFontSize = fontSize;
+}
 
 #pragma mark - 隐藏HUD
 /// 隐藏蒙版(无论在view还是window)
@@ -322,6 +332,9 @@ static NSTimer * kXWHUDkHideHUDTimer;
     if (isLineFeed) {
         hud.label.text = nil;
         hud.detailsLabel.text = message ?: @"加载中...";
+    } else {
+        hud.label.text =  message ?: @"加载中...";
+        hud.detailsLabel.text =  nil;
     }
     [hud hideAnimated:YES afterDelay:aTimer];
 }
@@ -335,7 +348,6 @@ static NSTimer * kXWHUDkHideHUDTimer;
         hud.margin = margin;
     }
     hud.bezelView.color = backgroundColor ?: [UIColor blackColor];
-    hud.label.textColor = textColor ?: [UIColor whiteColor];
     hud.detailsLabel.font = hud.label.font = textFont?: [UIFont systemFontOfSize:kXWHUDDefaultFontSize];
     if (!CGPointEqualToPoint(offset, CGPointZero)) {
         hud.offset = offset;
@@ -343,6 +355,11 @@ static NSTimer * kXWHUDkHideHUDTimer;
     if (isLineFeed) {
         hud.label.text = nil;
         hud.detailsLabel.text = message ?: @"加载中...";
+        hud.detailsLabel.textColor = textColor ?: [UIColor whiteColor];
+    } else {
+        hud.label.text =  message ?: @"加载中...";
+        hud.label.textColor = textColor ?: [UIColor whiteColor];
+        hud.detailsLabel.text =  nil;
     }
     [hud hideAnimated:YES afterDelay:aTimer];
 }
@@ -359,16 +376,17 @@ static NSTimer * kXWHUDkHideHUDTimer;
     MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeCustomView;
     
+    
+//        NSBundle *curBundle = [NSBundle bundleForClass:self.class];
+//        NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
+//        NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
+//        NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
+//        UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
+//        hud.customView = [[UIImageView alloc] initWithImage:normalImage];
+    
     NSString *normalImgName = [NSString stringWithFormat:@"XWHUDManager_%@@2x.png", iconName];
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:normalImgName]];
     
-        NSBundle *curBundle = [NSBundle bundleForClass:self.class];
-        NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
-        NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
-        NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
-        UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
-        hud.customView = [[UIImageView alloc] initWithImage:normalImage];
-    
-//    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:normalImgName]];
     [hud hideAnimated:YES afterDelay:aTimer];
 }
 
@@ -408,6 +426,7 @@ static NSTimer * kXWHUDkHideHUDTimer;
     }
     if (textColor) {
         hud.label.textColor = textColor;
+        hud.detailsLabel.textColor = textColor;
     }
     if (textFont) {
         hud.label.font = textFont;
@@ -429,6 +448,7 @@ static NSTimer * kXWHUDkHideHUDTimer;
     }
     if (textColor) {
         hud.label.textColor = textColor;
+        hud.detailsLabel.textColor = textColor;
     }
     if (textFont) {
         hud.label.font = textFont;
@@ -443,16 +463,18 @@ static NSTimer * kXWHUDkHideHUDTimer;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.defaultMotionEffectsEnabled = NO;
     hud.removeFromSuperViewOnHide = YES;
-    hud.label.text = @" ";
-    hud.detailsLabel.text = message ?: @"加载中...";
+    hud.detailsLabel.text = message;
     hud.detailsLabel.font = hud.label.font = [UIFont systemFontOfSize:kXWHUDDefaultFontSize];
     hud.backgroundView.color = [UIColor clearColor];
     hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
     hud.bezelView.style = MBProgressHUDBackgroundStyleBlur;
     // 注释下面配置代码默认显示浅灰->
-    hud.bezelView.color = [UIColor blackColor];
-    hud.label.textColor = [UIColor whiteColor];
-    hud.contentColor = [UIColor whiteColor];
+    if (kXWHUDManagerType == XWHUDManagerTypeDark) {
+        hud.bezelView.color = [UIColor blackColor];
+        hud.label.textColor = [UIColor whiteColor];
+        hud.detailsLabel.textColor = [UIColor whiteColor];
+        hud.contentColor = [UIColor whiteColor];
+    }
     return hud;
 }
 
