@@ -1,6 +1,6 @@
 {
   "name": "XWHUDManager",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "summary": "MBProgressHUD 封装.",
   "description": "MBProgressHUD 封装, 支持菊花, 提示语, 成功失败提示信息, 支持序列帧, Gif等, 支持自定义, 相当好用",
   "homepage": "https://github.com/qxuewei/XWHUDManager",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/qxuewei/XWHUDManager.git",
-    "tag": "0.2.7"
+    "tag": "0.2.8"
   },
   "social_media_url": "http://www.qiuxuewei.com",
   "platforms": {

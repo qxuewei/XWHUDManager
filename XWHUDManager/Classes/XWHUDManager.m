@@ -483,58 +483,99 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
     [MBProgressHUD hideHUDForView:view animated:YES];
 }
 
-/// 获取当前 keyWindow
-+ (UIView *)p_getKeyWindow {
-    return (UIView*)[UIApplication sharedApplication].delegate.window;
+//获取当前keyWindow
++ (UIWindow *)p_getKeyWindow {
+    UIWindow* window = nil;
+        if (@available(iOS 13.0, *)) {
+            for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes) {
+                if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                    window = windowScene.windows.firstObject;
+                    break;
+                }
+            }
+        } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            window = [UIApplication sharedApplication].keyWindow;
+#pragma clang diagnostic pop
+        }
+    
+    return window;
 }
 
 /// 获取当前屏幕显示的viewcontroller
 + (UIViewController *)p_getCurrentUIVC {
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-    if (window.windowLevel != UIWindowLevelNormal){
-        NSArray *windows = [[UIApplication sharedApplication] windows];
-        for(UIWindow * tmpWin in windows){
-            if (tmpWin.windowLevel == UIWindowLevelNormal){
-                window = tmpWin;
-                break;
-            }
-        }
-    }
-    UIViewController *result = [window.rootViewController.childViewControllers firstObject];
-    while (result.presentedViewController) {
-        result = result.presentedViewController;
-    }
-    if ([result isKindOfClass:[UITabBarController class]]) {
-        result = [(UITabBarController *)result selectedViewController];
-    }
-    if ([result isKindOfClass:[UINavigationController class]]) {
-        UIViewController *tempVC = [(UINavigationController *)result topViewController];
-        if ([tempVC isKindOfClass:[UITabBarController class]]) {
-            result = [(UITabBarController *)tempVC selectedViewController];
+    UIViewController *c_VC = nil;
+    
+    UIViewController *r_VC = [self p_getKeyWindow].rootViewController;
+    
+    while (true) {
+        
+        if ([r_VC isKindOfClass:[UINavigationController class]]) {
+            
+            UINavigationController *n_VC = (UINavigationController *)r_VC;
+            UIViewController *vc = n_VC.visibleViewController;
+            c_VC = vc;
+            r_VC = vc.presentedViewController;
+            continue;
+            
+        } else if([r_VC isKindOfClass:[UITabBarController class]]) {
+            
+            UITabBarController *t_VC = (UITabBarController *)r_VC;
+            c_VC = t_VC;
+            r_VC = [t_VC.viewControllers objectAtIndex:t_VC.selectedIndex];
+            continue;
+            
+        } else if([r_VC isKindOfClass:[UIViewController class]]) {
+            
+            UIViewController *vc = (UIViewController *)r_VC;
+            c_VC = vc;
+            r_VC = vc.presentedViewController;
+            continue;
+            
         } else {
-            return tempVC;
+            break;
         }
     }
-    return result;
+    
+    return c_VC;
 }
 
-+ (UINavigationController *)p_currentNavigationController {
-    UINavigationController *navigationController;
-    UIViewController *rootVC = [[UIApplication sharedApplication].keyWindow.rootViewController.childViewControllers firstObject];
-    if ([rootVC isKindOfClass:[UITabBarController class]]) {
-        UITabBarController *tabBarVC = (UITabBarController *)rootVC;
-        UINavigationController *vc = tabBarVC.selectedViewController;
-        if (![vc isKindOfClass:[UINavigationController class]]) {
-            NSAssert(NO, @"tabBarViewController's selectedViewController is not a UINavigationController instance");
-        }
-        navigationController = vc;
-    } else if (![rootVC isKindOfClass:[UINavigationController class]]) {
-        navigationController = rootVC.navigationController;
-    } else {
-        navigationController = (UINavigationController *)rootVC;
-    }
-    return navigationController;
-}
+
+/// 获取当前 keyWindow
+//+ (UIView *)p_getKeyWindow {
+//    return (UIView*)[UIApplication sharedApplication].delegate.window;
+//}
+
+///// 获取当前屏幕显示的viewcontroller
+//+ (UIViewController *)p_getCurrentUIVC {
+//    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+//    if (window.windowLevel != UIWindowLevelNormal){
+//        NSArray *windows = [[UIApplication sharedApplication] windows];
+//        for(UIWindow * tmpWin in windows){
+//            if (tmpWin.windowLevel == UIWindowLevelNormal){
+//                window = tmpWin;
+//                break;
+//            }
+//        }
+//    }
+//    UIViewController *result = [window.rootViewController.childViewControllers firstObject];
+//    while (result.presentedViewController) {
+//        result = result.presentedViewController;
+//    }
+//    if ([result isKindOfClass:[UITabBarController class]]) {
+//        result = [(UITabBarController *)result selectedViewController];
+//    }
+//    if ([result isKindOfClass:[UINavigationController class]]) {
+//        UIViewController *tempVC = [(UINavigationController *)result topViewController];
+//        if ([tempVC isKindOfClass:[UITabBarController class]]) {
+//            result = [(UITabBarController *)tempVC selectedViewController];
+//        } else {
+//            return tempVC;
+//        }
+//    }
+//    return result;
+//}
 
 + (float)p_frameDurationAtIndex:(NSUInteger)index source:(CGImageSourceRef)source {
     float frameDuration = 0.1f;
