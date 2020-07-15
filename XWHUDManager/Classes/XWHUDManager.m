@@ -42,7 +42,7 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 
 /// 隐藏当前View上的HUD
 + (void)hideInView{
-    [self p_hideHUDForView:[self p_getCurrentUIVC].view];
+    [self p_hideHUDForView:[self p_getCurrentViewInVC]];
 }
 
 /// 隐藏当前window上的HUD
@@ -137,52 +137,52 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 #pragma mark - 提示图片
 /// 正确提示
 + (void)showSuccessHUD {
-    [self p_showCustomIcon:@"right" message:@"" isWindow:YES timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_right" message:@"" isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 有文本正确提示
 + (void)showSuccessTipHUD:(NSString *)message {
-    [self p_showCustomIcon:@"right" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_right" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在view展示有文本正确提示
 + (void)showSuccessTipHUDInView:(NSString *)message {
-    [self p_showCustomIcon:@"right" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_right" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 /// 错误提示
 + (void)showErrorHUD {
-    [self p_showCustomIcon:@"error" message:@"" isWindow:YES timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_error" message:@"" isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 有文本错误提示
 + (void)showErrorTipHUD:(NSString *)message {
-    [self p_showCustomIcon:@"error" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_error" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在view有文本错误提示
 + (void)showErrorTipHUDInView:(NSString *)message {
-    [self p_showCustomIcon:@"error" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_error" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 /// 信息提示
 + (void)showInfoTipHUD:(NSString *)message {
-    [self p_showCustomIcon:@"info" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_info" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在view信息提示
 + (void)showInfoTipHUDInView:(NSString *)message {
-    [self p_showCustomIcon:@"info" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_info" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 /// 警告提示
 + (void)showWarningTipHUD:(NSString *)message {
-    [self p_showCustomIcon:@"tip" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_tip" message:message isWindow:YES timer:kXWHUDHideTimeInterval];
 }
 
 /// 在view警告提示
 + (void)showWarningTipHUDInView:(NSString *)message {
-    [self p_showCustomIcon:@"tip" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
+    [self p_showCustomIcon:@"XWHUDManager_tip" message:message isWindow:NO timer:kXWHUDHideTimeInterval];
 }
 
 #pragma mark - 自定义图片
@@ -376,16 +376,18 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
     MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.mode = MBProgressHUDModeCustomView;
     
+    /// FromBundle
+    NSBundle *curBundle = [NSBundle bundleForClass:self.class];
+    NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
+    NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
+    NSString *imageName = [NSString stringWithFormat:@"%@@2x.png",iconName];
+    NSString *normalImgPath = [curBundle pathForResource:imageName ofType:nil inDirectory:curBundleDirectory];
+    UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
+    hud.customView = [[UIImageView alloc] initWithImage:normalImage];
     
-//        NSBundle *curBundle = [NSBundle bundleForClass:self.class];
-//        NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
-//        NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
-//        NSString *normalImgPath = [curBundle pathForResource:normalImgName ofType:nil inDirectory:curBundleDirectory];
-//        UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
-//        hud.customView = [[UIImageView alloc] initWithImage:normalImage];
-    
-    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDManager_%@@2x.png", iconName];
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:normalImgName]];
+    /// FromLocal
+//    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDManager_%@@2x.png", iconName];
+//    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:normalImgName]];
     
     [hud hideAnimated:YES afterDelay:aTimer];
 }
@@ -459,7 +461,7 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 
 /// 全局统一生成提示框对象
 + (MBProgressHUD *)p_createMBProgressHUDviewWithMessage:(NSString*)message isWindiw:(BOOL)isWindow {
-    UIView *view = isWindow ? [self p_getKeyWindow] : [self p_getCurrentUIVC].view;
+    UIView *view = isWindow ? [self p_getKeyWindow] : [self p_getCurrentViewInVC];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.defaultMotionEffectsEnabled = NO;
     hud.removeFromSuperViewOnHide = YES;
@@ -481,6 +483,16 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 /// 隐藏蒙版
 + (void)p_hideHUDForView:(UIView *)view {
     [MBProgressHUD hideHUDForView:view animated:YES];
+}
+
+/// 当前控制器View
++ (UIView *)p_getCurrentViewInVC {
+    UIViewController *vc = [self p_getCurrentUIVC];
+    if (!vc) {
+        return [self p_getKeyWindow];
+    } else {
+        return vc.view;
+    }
 }
 
 //获取当前keyWindow
@@ -540,7 +552,6 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
     
     return c_VC;
 }
-
 
 /// 获取当前 keyWindow
 //+ (UIView *)p_getKeyWindow {
