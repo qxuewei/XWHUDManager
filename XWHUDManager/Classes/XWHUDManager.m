@@ -497,7 +497,11 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 
 //获取当前keyWindow
 + (UIWindow *)p_getKeyWindow {
-    UIWindow* window = nil;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    UIWindow* window = [UIApplication sharedApplication].keyWindow;
+#pragma clang diagnostic pop
+    
         if (@available(iOS 13.0, *)) {
             for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes) {
                 if (windowScene.activationState == UISceneActivationStateForegroundActive) {
@@ -505,11 +509,6 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
                     break;
                 }
             }
-        } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            window = [UIApplication sharedApplication].keyWindow;
-#pragma clang diagnostic pop
         }
     
     return window;

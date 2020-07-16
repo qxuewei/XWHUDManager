@@ -1,6 +1,6 @@
 PODS:
   - MBProgressHUD (1.1.0)
-  - XWHUDManager (0.2.8):
+  - XWHUDManager (0.3.0):
     - MBProgressHUD (~> 1.1.0)
 
 DEPENDENCIES:
@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  XWHUDManager: 4e08b9cea1f4bf34cdb69caa328ebffd27a15592
+  XWHUDManager: 929c6e7acfccaf06b26d971680e7d0d3164c835b
 
 PODFILE CHECKSUM: c3dc7bf9f0e316c8a3fdcf90c3497c3c58683b20
 
