@@ -8,7 +8,20 @@
 #import "XWHUDManager.h"
 #import "MBProgressHUD.h"
 
+/// 强制主线程执行
+/// @param block HUD操作
+void dispatch_main_sync_safe(dispatch_block_t block){
+    if ([NSThread isMainThread]) {
+        if (block) {
+            block();
+        }
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
+
 @implementation XWHUDManager
+
 static NSTimer * kXWHUDkHideHUDTimer;
 /// 隐藏蒙版默认时间
 static const NSTimeInterval kXWHUDHideTimeInterval = 1.0f;
@@ -206,7 +219,6 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
     [self p_showCustomIcon:iconName message:message isWindow:NO timer:HUGE_VALF];
 }
 
-
 #pragma mark - 自定义图片+提示语(图片外界传入)
 /// 展示自定义图片
 + (void)showCustomImageHUD:(UIImage *)image message:(NSString *)message timer:(NSTimeInterval)aTimer {
@@ -228,20 +240,22 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
     [self p_showCustomImage:image message:message isWindow:NO timer:HUGE_VALF];
 }
 
-
 #pragma mark - 提示序列帧图片
 /// 展示自定义序列帧图片
 + (void)showCustomImagesHUD:(NSArray <UIImage *> *)images message:(NSString *)message timer:(NSTimeInterval)aTimer {
     [self p_showCustomImages:images message:message isWindow:YES timer:aTimer > 0 ? aTimer : images.count * 0.1];
 }
+
 /// 在view上展示自定义序列帧图片
 + (void)showCustomImagesHUDInView:(NSArray <UIImage *> *)images message:(NSString *)message timer:(NSTimeInterval)aTimer {
     [self p_showCustomImages:images message:message isWindow:NO timer:aTimer > 0 ? aTimer : images.count * 0.1];
 }
+
 /// 展示自定义序列帧图片 - 不自动移除
 + (void)showCustomImagesHUD:(NSArray <UIImage *> *)images message:(NSString *)message {
     [self p_showCustomImages:images message:message isWindow:YES timer:HUGE_VALF];
 }
+
 /// 在view上展示自定义序列帧图片 - 不自动移除
 + (void)showCustomImagesHUDInView:(NSArray <UIImage *> *)images message:(NSString *)message {
     [self p_showCustomImages:images message:message isWindow:NO timer:HUGE_VALF];
@@ -252,14 +266,17 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 + (void)showGifImagesHUD:(NSString *)gifFileName message:(NSString *)message timer:(NSTimeInterval)aTimer {
     [self p_showGifImagesHUD:gifFileName message:message isWindow:YES timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
+
 /// 在view上展示自定义GIF图片
 + (void)showGifImagesHUDInView:(NSString *)gifFileName message:(NSString *)message timer:(NSTimeInterval)aTimer {
     [self p_showGifImagesHUD:gifFileName message:message isWindow:NO timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
+
 /// 展示自定义GIF图片 - 不自动移除
 + (void)showGifImagesHUD:(NSString *)gifFileName message:(NSString *)message {
     [self p_showGifImagesHUD:gifFileName message:message isWindow:YES timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
+
 /// 在view上展示自定义GIF图片 - 不自动移除
 + (void)showGifImagesHUDInView:(NSString *)gifFileName message:(NSString *)message {
     [self p_showGifImagesHUD:gifFileName message:message isWindow:NO timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
@@ -270,27 +287,31 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 + (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message timer:(NSTimeInterval)aTimer {
     [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
+
 /// 在view上展示自定义GIF图片
 + (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message timer:(NSTimeInterval)aTimer {
     [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:aTimer backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
+
 /// 展示自定义GIF图片 - 不自动移除
 + (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message {
     [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
+
 /// 在view上展示自定义GIF图片 - 不自动移除
 + (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message {
     [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:HUGE_VALF backgroundColor:nil textColor:nil textFont:nil alpha:1.0];
 }
+
 /// 展示自定义GIF图片 - 不自动移除
 + (void)showGifImageHUD:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha timer:(NSTimeInterval)aTimer {
     [self p_showGifImageHUD:gifImage message:message isWindow:YES timer:(aTimer > 0 ? aTimer : HUGE_VALF) backgroundColor:backgroundColor textColor:textColor textFont:textFont alpha:alpha];
 }
+
 /// 在view上展示自定义GIF图片 - 不自动移除
 + (void)showGifImageHUDInView:(UIImage *)gifImage message:(NSString *)message backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha timer:(NSTimeInterval)aTimer {
     [self p_showGifImageHUD:gifImage message:message isWindow:NO timer:(aTimer > 0 ? aTimer : HUGE_VALF) backgroundColor:backgroundColor textColor:textColor textFont:textFont alpha:alpha];
 }
-
 
 #pragma mark - Data -> Gif
 + (UIImage *)imageGIFWithData:(NSData *)data {
@@ -327,136 +348,152 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 #pragma mark - private
 /// 文本框
 + (void)p_showTipMessage:(NSString*)message isLineFeed:(BOOL)isLineFeed isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
-    MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
-    hud.mode = MBProgressHUDModeText;
-    if (isLineFeed) {
-        hud.label.text = nil;
-        hud.detailsLabel.text = message ?: @"加载中...";
-    } else {
-        hud.label.text =  message ?: @"加载中...";
-        hud.detailsLabel.text =  nil;
-    }
-    [hud hideAnimated:YES afterDelay:aTimer];
+    dispatch_main_sync_safe(^{
+        MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+        hud.mode = MBProgressHUDModeText;
+        if (isLineFeed) {
+            hud.label.text = nil;
+            hud.detailsLabel.text = message ?: @"加载中...";
+        } else {
+            hud.label.text =  message ?: @"加载中...";
+            hud.detailsLabel.text =  nil;
+        }
+        [hud hideAnimated:YES afterDelay:aTimer];
+    });
 }
 
 /// 自定义文本框
 + (void)p_showCustomTipMessage:(NSString*)message isLineFeed:(BOOL)isLineFeed isWindow:(BOOL)isWindow backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont margin:(CGFloat)margin offset:(CGPoint)offset timer:(NSTimeInterval)aTimer {
-    MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
-    hud.mode = MBProgressHUDModeText;
-    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    if (margin > 0.0 && margin < 20.0) {
-        hud.margin = margin;
-    }
-    hud.bezelView.color = backgroundColor ?: [UIColor blackColor];
-    hud.detailsLabel.font = hud.label.font = textFont?: [UIFont systemFontOfSize:kXWHUDDefaultFontSize];
-    if (!CGPointEqualToPoint(offset, CGPointZero)) {
-        hud.offset = offset;
-    }
-    if (isLineFeed) {
-        hud.label.text = nil;
-        hud.detailsLabel.text = message ?: @"加载中...";
-        hud.detailsLabel.textColor = textColor ?: [UIColor whiteColor];
-    } else {
-        hud.label.text =  message ?: @"加载中...";
-        hud.label.textColor = textColor ?: [UIColor whiteColor];
-        hud.detailsLabel.text =  nil;
-    }
-    [hud hideAnimated:YES afterDelay:aTimer];
+    dispatch_main_sync_safe(^{
+        MBProgressHUD *hud = [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+        hud.mode = MBProgressHUDModeText;
+        hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        if (margin > 0.0 && margin < 20.0) {
+            hud.margin = margin;
+        }
+        hud.bezelView.color = backgroundColor ?: [UIColor blackColor];
+        hud.detailsLabel.font = hud.label.font = textFont?: [UIFont systemFontOfSize:kXWHUDDefaultFontSize];
+        if (!CGPointEqualToPoint(offset, CGPointZero)) {
+            hud.offset = offset;
+        }
+        if (isLineFeed) {
+            hud.label.text = nil;
+            hud.detailsLabel.text = message ?: @"加载中...";
+            hud.detailsLabel.textColor = textColor ?: [UIColor whiteColor];
+        } else {
+            hud.label.text =  message ?: @"加载中...";
+            hud.label.textColor = textColor ?: [UIColor whiteColor];
+            hud.detailsLabel.text =  nil;
+        }
+        [hud hideAnimated:YES afterDelay:aTimer];
+    });
 }
 
 /// 小菊花
 + (void)p_showActivityMessage:(NSString*)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
-    MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    [hud hideAnimated:YES afterDelay:aTimer];
+    dispatch_main_sync_safe(^{
+        MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        [hud hideAnimated:YES afterDelay:aTimer];
+    });
 }
 
 /// 自定义图片 - bundle内资源
 + (void)p_showCustomIcon:(NSString *)iconName message:(NSString *)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
-    MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
-    hud.mode = MBProgressHUDModeCustomView;
-    
-    /// FromBundle
-    NSBundle *curBundle = [NSBundle bundleForClass:self.class];
-    NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
-    NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
-    NSString *imageName = [NSString stringWithFormat:@"%@@2x.png",iconName];
-    NSString *normalImgPath = [curBundle pathForResource:imageName ofType:nil inDirectory:curBundleDirectory];
-    UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
-    hud.customView = [[UIImageView alloc] initWithImage:normalImage];
-    
-    /// FromLocal
-//    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDManager_%@@2x.png", iconName];
-//    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:normalImgName]];
-    
-    [hud hideAnimated:YES afterDelay:aTimer];
+    dispatch_main_sync_safe(^{
+        MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+        hud.mode = MBProgressHUDModeCustomView;
+        
+        /// FromBundle
+        NSBundle *curBundle = [NSBundle bundleForClass:self.class];
+        NSString *curBundleName = curBundle.infoDictionary[@"CFBundleName"];
+        NSString *curBundleDirectory = [NSString stringWithFormat:@"%@.bundle", curBundleName];
+        NSString *imageName = [NSString stringWithFormat:@"%@@2x.png",iconName];
+        NSString *normalImgPath = [curBundle pathForResource:imageName ofType:nil inDirectory:curBundleDirectory];
+        UIImage *normalImage = [UIImage imageWithContentsOfFile:normalImgPath];
+        hud.customView = [[UIImageView alloc] initWithImage:normalImage];
+        
+        /// FromLocal
+        //    NSString *normalImgName = [NSString stringWithFormat:@"XWHUDManager_%@@2x.png", iconName];
+        //    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:normalImgName]];
+        
+        [hud hideAnimated:YES afterDelay:aTimer];
+    });
 }
 
 /// 自定义图片-外界传入图片
-+ (void)p_showCustomImage:(UIImage *)image message:(NSString *)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer{
-    MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
-    hud.mode = MBProgressHUDModeCustomView;
-    hud.customView = [[UIImageView alloc] initWithImage:image];
-    [hud hideAnimated:YES afterDelay:aTimer];
++ (void)p_showCustomImage:(UIImage *)image message:(NSString *)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
+    dispatch_main_sync_safe(^{
+        MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.customView = [[UIImageView alloc] initWithImage:image];
+        [hud hideAnimated:YES afterDelay:aTimer];
+    });
 }
 
 /// 序列帧
-+ (void)p_showCustomImages:(NSArray <UIImage *> *)images message:(NSString *)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer{
-    MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
-    hud.mode = MBProgressHUDModeCustomView;
-    UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.animationImages = images;
-    imageView.animationDuration = images.count * 0.1;
-    imageView.animationRepeatCount = HUGE_VALF;
-    [imageView startAnimating];
-    hud.customView = imageView;
-    [hud hideAnimated:YES afterDelay:aTimer];
++ (void)p_showCustomImages:(NSArray <UIImage *> *)images message:(NSString *)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer {
+    dispatch_main_sync_safe(^{
+        MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+        hud.mode = MBProgressHUDModeCustomView;
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.animationImages = images;
+        imageView.animationDuration = images.count * 0.1;
+        imageView.animationRepeatCount = HUGE_VALF;
+        [imageView startAnimating];
+        hud.customView = imageView;
+        [hud hideAnimated:YES afterDelay:aTimer];
+    });
 }
 
 /// GIF - Gif 文件名
 + (void)p_showGifImagesHUD:(NSString *)gifFileName message:(NSString *)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha {
-    MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
-    hud.mode = MBProgressHUDModeCustomView;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:gifFileName ofType:@"gif"];
-    UIImage *gifImage = [self imageGIFWithData:[NSData dataWithContentsOfFile:filePath]];
-    UIImageView *gifImageView = [[UIImageView alloc] initWithImage:gifImage];
-    hud.customView = gifImageView;
-    
-    hud.alpha = alpha;
-    if (backgroundColor) {
-        hud.bezelView.color = backgroundColor;
-    }
-    if (textColor) {
-        hud.label.textColor = textColor;
-        hud.detailsLabel.textColor = textColor;
-    }
-    if (textFont) {
-        hud.label.font = textFont;
-    }
-    
-    [hud hideAnimated:YES afterDelay:aTimer];
+    dispatch_main_sync_safe(^{
+        MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+        hud.mode = MBProgressHUDModeCustomView;
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:gifFileName ofType:@"gif"];
+        UIImage *gifImage = [self imageGIFWithData:[NSData dataWithContentsOfFile:filePath]];
+        UIImageView *gifImageView = [[UIImageView alloc] initWithImage:gifImage];
+        hud.customView = gifImageView;
+        
+        hud.alpha = alpha;
+        if (backgroundColor) {
+            hud.bezelView.color = backgroundColor;
+        }
+        if (textColor) {
+            hud.label.textColor = textColor;
+            hud.detailsLabel.textColor = textColor;
+        }
+        if (textFont) {
+            hud.label.font = textFont;
+        }
+        
+        [hud hideAnimated:YES afterDelay:aTimer];
+    });
 }
 
 /// GIF
 + (void)p_showGifImageHUD:(UIImage *)gifImage message:(NSString *)message isWindow:(BOOL)isWindow timer:(NSTimeInterval)aTimer backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor textFont:(UIFont *)textFont alpha:(CGFloat)alpha {
-    MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
-    hud.mode = MBProgressHUDModeCustomView;
-    UIImageView *gifImageView = [[UIImageView alloc] initWithImage:gifImage];
-    hud.customView = gifImageView;
-    
-    hud.alpha = alpha;
-    if (backgroundColor) {
-        hud.bezelView.color = backgroundColor;
-    }
-    if (textColor) {
-        hud.label.textColor = textColor;
-        hud.detailsLabel.textColor = textColor;
-    }
-    if (textFont) {
-        hud.label.font = textFont;
-    }
-    
-    [hud hideAnimated:YES afterDelay:aTimer];
+    dispatch_main_sync_safe(^{
+        MBProgressHUD *hud  =  [self p_createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
+        hud.mode = MBProgressHUDModeCustomView;
+        UIImageView *gifImageView = [[UIImageView alloc] initWithImage:gifImage];
+        hud.customView = gifImageView;
+        
+        hud.alpha = alpha;
+        if (backgroundColor) {
+            hud.bezelView.color = backgroundColor;
+        }
+        if (textColor) {
+            hud.label.textColor = textColor;
+            hud.detailsLabel.textColor = textColor;
+        }
+        if (textFont) {
+            hud.label.font = textFont;
+        }
+        
+        [hud hideAnimated:YES afterDelay:aTimer];
+    });
 }
 
 /// 全局统一生成提示框对象
@@ -482,7 +519,9 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
 
 /// 隐藏蒙版
 + (void)p_hideHUDForView:(UIView *)view {
-    [MBProgressHUD hideHUDForView:view animated:YES];
+    dispatch_main_sync_safe(^{
+        [MBProgressHUD hideHUDForView:view animated:YES];
+    });
 }
 
 /// 当前控制器View
@@ -502,14 +541,14 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
 #pragma clang diagnostic pop
     
-        if (@available(iOS 13.0, *)) {
-            for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes) {
-                if (windowScene.activationState == UISceneActivationStateForegroundActive) {
-                    window = windowScene.windows.firstObject;
-                    break;
-                }
+    if (@available(iOS 13.0, *)) {
+        for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes) {
+            if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                window = windowScene.windows.firstObject;
+                break;
             }
         }
+    }
     
     return window;
 }
@@ -625,5 +664,6 @@ static XWHUDManagerType kXWHUDManagerType = XWHUDManagerTypeDark;
         inBlock();
     }
 }
+
 @end
 
