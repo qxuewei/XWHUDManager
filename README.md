@@ -24,7 +24,7 @@ pod 'XWHUDManager'
 
 ## Author
 
-qxuewei, qiuxuewei@peiwo.cn
+qxuewei, qxuewei@yeah.net
 
 ## License
 
