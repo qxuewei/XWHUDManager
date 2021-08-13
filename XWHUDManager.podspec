@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/qxuewei/XWHUDManager'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'qxuewei' => 'qiuxuewei@peiwo.cn' }
+  s.author           = { 'qxuewei' => 'qxuewei@yeah.net' }
   s.source           = { :git => 'https://github.com/qxuewei/XWHUDManager.git', :tag => s.version.to_s }
   s.social_media_url = 'http://www.qiuxuewei.com'
 
